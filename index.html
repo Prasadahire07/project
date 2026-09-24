@@ -1,0 +1,2897 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SUDO - SIH 2026 Project: One Participant. One Complete Record. Unified digital tracking, smart attendance, verified skill passport, and outcome analytics for vocational and cooperative training.">
+  <meta name="keywords" content="Smart India Hackathon 2026, SIH 2026, SUDO, NCCT, Cooperative Training, ESP32 Attendance, Verified Skill Passport, LMS, ERP, Outcome Analytics">
+  <meta name="author" content="Team SUDO">
+  <title>SUDO | SIH 2026 — One Participant. One Complete Record.</title>
+
+  <!-- Google Fonts Preconnect & Inter/Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP NOTIFICATION BAR (SIH 2026 SUBMISSION BADGE)
+       ======================================================================== -->
+  <div class="top-banner">
+    <span class="top-banner-badge">SIH 2026 Concept Proposal</span>
+    <span><strong>Team SUDO</strong> • National Council for Cooperative Training (NCCT) Unified Ecosystem</span>
+    <a href="#dashboards" class="top-banner-link">View Live Interactive Dashboards (Demo) →</a>
+  </div>
+
+  <!-- ========================================================================
+       STICKY NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar" id="topNav">
+    <div class="container nav-container">
+      <div class="nav-brand">
+        <a href="#hero" class="brand-logo-icon">S</a>
+        <div class="brand-text">
+          <span class="brand-name">SUDO</span>
+          <span class="brand-sub">SIH 2026 • Unified Training Platform</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <div class="nav-item">
+          <a href="#problem" class="nav-link">Problem</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="#solution" class="nav-link">Solution</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="#journey" class="nav-link">Journey</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="#ecosystem" class="nav-link">Ecosystem</a>
+        </div>
+
+        <!-- Technical Dropdown -->
+        <div class="nav-item">
+          <a href="#architecture" class="nav-link">
+            Architecture ▾
+          </a>
+          <div class="nav-dropdown">
+            <a href="#attendance" class="dropdown-link">
+              <span class="dropdown-link-title">Smart Attendance (ESP32)</span>
+              <span class="dropdown-link-desc">BLE + Biometric multi-check</span>
+            </a>
+            <a href="#offline" class="dropdown-link">
+              <span class="dropdown-link-title">Offline-First Engine</span>
+              <span class="dropdown-link-desc">Local caching & differential sync</span>
+            </a>
+            <a href="#architecture" class="dropdown-link">
+              <span class="dropdown-link-title">Technical Architecture</span>
+              <span class="dropdown-link-desc">Grounded hardware & software tiers</span>
+            </a>
+            <a href="#data-flow" class="dropdown-link">
+              <span class="dropdown-link-title">12-Stage Data Flow</span>
+              <span class="dropdown-link-desc">Information lifecycle specification</span>
+            </a>
+            <a href="#security" class="dropdown-link">
+              <span class="dropdown-link-title">Security & RBAC</span>
+              <span class="dropdown-link-desc">Access control & audit logs</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Credentials & AI Dropdown -->
+        <div class="nav-item">
+          <a href="#passport" class="nav-link">
+            Credentials ▾
+          </a>
+          <div class="nav-dropdown">
+            <a href="#passport" class="dropdown-link">
+              <span class="dropdown-link-title">Verified Skill Passport</span>
+              <span class="dropdown-link-desc">Evidence-backed digital profile</span>
+            </a>
+            <a href="#certification" class="dropdown-link">
+              <span class="dropdown-link-title">Certificate Verifier</span>
+              <span class="dropdown-link-desc">QR & Unique ID live test tool</span>
+            </a>
+            <a href="#ai-guidance" class="dropdown-link">
+              <span class="dropdown-link-title">AI Career Guidance</span>
+              <span class="dropdown-link-desc">Intelligent skill gap diagnostics</span>
+            </a>
+            <a href="#job-matching" class="dropdown-link">
+              <span class="dropdown-link-title">Job & Livelihood Matching</span>
+              <span class="dropdown-link-desc">Connecting verified skills with employers</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Impact & Viability Dropdown -->
+        <div class="nav-item">
+          <a href="#impact" class="nav-link">
+            Impact ▾
+          </a>
+          <div class="nav-dropdown">
+            <a href="#training-intelligence" class="dropdown-link">
+              <span class="dropdown-link-title">Training Intelligence</span>
+              <span class="dropdown-link-desc">Circular outcome feedback loop</span>
+            </a>
+            <a href="#skill-map" class="dropdown-link">
+              <span class="dropdown-link-title">Cooperative Skill Map</span>
+              <span class="dropdown-link-desc">Federated NCCT institutional model</span>
+            </a>
+            <a href="#feasibility" class="dropdown-link">
+              <span class="dropdown-link-title">Feasibility & Scalability</span>
+              <span class="dropdown-link-desc">Technical, operational, economic</span>
+            </a>
+            <a href="#risks" class="dropdown-link">
+              <span class="dropdown-link-title">Risks & Mitigation Matrix</span>
+              <span class="dropdown-link-desc">5 key failure modes addressed</span>
+            </a>
+            <a href="#impact" class="dropdown-link">
+              <span class="dropdown-link-title">4 Benefit Quadrants</span>
+              <span class="dropdown-link-desc">Social, Economic, Operational, Educational</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#dashboards" class="nav-link">Dashboards</a>
+        </div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn open-search-modal" title="Quick Search (Ctrl+K)" aria-label="Search Documentation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode">
+          <span id="themeIcon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+        </button>
+
+        <button class="nav-btn nav-btn-outline print-doc-btn" title="Print or Save formal PDF report">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          PDF Report
+        </button>
+
+        <a href="#dashboards" class="nav-btn nav-btn-primary">
+          Live Demo
+        </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button class="icon-btn mobile-toggle" id="mobileNavToggle" aria-label="Open Navigation Drawer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Overlay & Off-Canvas Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation Drawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <span class="brand-logo-icon" style="width: 34px; height: 34px; font-size: 1rem;">S</span>
+        <div>
+          <div style="font-weight: 800; font-size: 1.05rem; line-height: 1.1; color: var(--text-main);">Team SUDO</div>
+          <div style="font-size: 0.7rem; color: var(--text-subtle); text-transform: uppercase;">SIH 2026 Documentation</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button class="icon-btn mobile-theme-btn" id="drawerThemeToggleBtn" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+          <span class="drawer-theme-icon" id="drawerThemeIcon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+        </button>
+        <button class="drawer-close-btn" id="closeMobileNav" aria-label="Close Navigation Menu">✕</button>
+      </div>
+
+    <div class="drawer-content">
+      <div class="drawer-group">
+        <div class="drawer-group-title">Overview & Concept</div>
+        <a href="#problem" class="drawer-link"><span class="drawer-num">01</span> Problem Statement</a>
+        <a href="#solution" class="drawer-link"><span class="drawer-num">02</span> Proposed Solution</a>
+        <a href="#journey" class="drawer-link"><span class="drawer-num">03</span> Core Participant Journey</a>
+        <a href="#ecosystem" class="drawer-link"><span class="drawer-num">04</span> Stakeholder Ecosystem</a>
+      </div>
+
+      <div class="drawer-group">
+        <div class="drawer-group-title">Technical Deep Dives</div>
+        <a href="#attendance" class="drawer-link"><span class="drawer-num">05</span> Smart Attendance (ESP32)</a>
+        <a href="#offline" class="drawer-link"><span class="drawer-num">06</span> Offline-First Architecture</a>
+        <a href="#lms" class="drawer-link"><span class="drawer-num">07</span> Learning Management (LMS)</a>
+        <a href="#architecture" class="drawer-link"><span class="drawer-num">08</span> Technical Architecture</a>
+        <a href="#data-flow" class="drawer-link"><span class="drawer-num">09</span> Data Flow Lifecycle</a>
+        <a href="#security" class="drawer-link"><span class="drawer-num">10</span> Security & RBAC</a>
+      </div>
+
+      <div class="drawer-group">
+        <div class="drawer-group-title">Credentials & AI</div>
+        <a href="#passport" class="drawer-link"><span class="drawer-num">11</span> Verified Skill Passport</a>
+        <a href="#certification" class="drawer-link"><span class="drawer-num">12</span> Certificate Verifier</a>
+        <a href="#ai-guidance" class="drawer-link"><span class="drawer-num">13</span> AI Career Guidance</a>
+        <a href="#job-matching" class="drawer-link"><span class="drawer-num">14</span> Job Matching Board</a>
+        <a href="#employer-portal" class="drawer-link"><span class="drawer-num">15</span> Employer / Coop Portal</a>
+      </div>
+
+      <div class="drawer-group">
+        <div class="drawer-group-title">Intelligence, Impact & Demos</div>
+        <a href="#training-intelligence" class="drawer-link"><span class="drawer-num">16</span> Training Intelligence & Loop</a>
+        <a href="#skill-map" class="drawer-link"><span class="drawer-num">17</span> Cooperative Skill Map</a>
+        <a href="#feasibility" class="drawer-link"><span class="drawer-num">18</span> Feasibility & Scalability</a>
+        <a href="#risks" class="drawer-link"><span class="drawer-num">19</span> Risks & Mitigation Matrix</a>
+        <a href="#impact" class="drawer-link"><span class="drawer-num">20</span> Impact & 4 Benefit Quadrants</a>
+        <a href="#dashboards" class="drawer-link highlight"><span class="drawer-num">21</span> Interactive Dashboards (5 Cockpits)</a>
+        <a href="#future-scope" class="drawer-link"><span class="drawer-num">22</span> Future Scope Roadmap</a>
+        <a href="#references" class="drawer-link"><span class="drawer-num">23</span> Research & References</a>
+        <a href="#team" class="drawer-link"><span class="drawer-num">24</span> Team SUDO</a>
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <button class="btn btn-outline btn-sm print-doc-btn" style="width: 100%; justify-content: center;">
+        📄 Print / Export PDF Report
+      </button>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION
+         ====================================================================== -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-meta-strip">
+            <span class="hero-team-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              Smart India Hackathon 2026 • <strong>Team SUDO</strong>
+            </span>
+            <span class="badge badge-primary">GovTech & Cooperative Skilling</span>
+          </div>
+
+          <h1 class="hero-title">
+            One Participant.<br>
+            <span class="gradient-text">One Complete Record.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Connecting Training, Verified Skills, Certification, Career Guidance and Livelihood Opportunities in one unified, offline-resilient ecosystem.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#solution" class="btn btn-primary btn-lg">
+              Explore the Solution
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#architecture" class="btn btn-outline btn-lg">
+              View System Architecture
+            </a>
+            <a href="#dashboards" class="btn btn-secondary btn-lg">
+              Open Demo Dashboards
+            </a>
+          </div>
+
+          <!-- Problem Statement Editable Meta Card (Directly reflecting PPT fields) -->
+          <div class="ps-card">
+            <div class="ps-item">
+              <span class="ps-label">Problem Statement ID</span>
+              <span class="ps-val editable mono" data-editable-id="ps_id" title="Click to customize PS ID" contenteditable="true">
+                [SIH-2026-XXXX]
+              </span>
+            </div>
+            <div class="ps-item">
+              <span class="ps-label">Theme / Domain</span>
+              <span class="ps-val">Smart Education / Cooperative Governance</span>
+            </div>
+            <div class="ps-item" style="grid-column: 1 / -1;">
+              <span class="ps-label">Problem Statement Title (Editable Placeholder)</span>
+              <span class="ps-val editable" data-editable-id="ps_title" title="Click to customize Title" contenteditable="true">
+                [Unified Digital Tracking & Outcome Platform for Cooperative & Skill Training]
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right: Live Interactive Ecosystem Card -->
+        <div class="hero-visual">
+          <div class="hero-preview-card">
+            <div class="preview-card-header">
+              <div class="preview-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                The Unified Participant Loop
+              </div>
+              <div class="preview-status">
+                <span class="preview-pulse"></span>
+                Ecosystem Operational
+              </div>
+            </div>
+
+            <div class="hero-flow-diagram">
+              <div class="flow-node">
+                <div class="flow-node-left">
+                  <div class="flow-node-icon">01</div>
+                  <div>
+                    <div class="flow-node-title">Trainee Enrollment</div>
+                    <div class="flow-node-meta">Aadhaar / e-KYC Identity Binding</div>
+                  </div>
+                </div>
+                <span class="badge badge-primary">Entry</span>
+              </div>
+
+              <div class="flow-connector">↓</div>
+
+              <div class="flow-node">
+                <div class="flow-node-left">
+                  <div class="flow-node-icon" style="color: #f97316;">02</div>
+                  <div>
+                    <div class="flow-node-title">Smart Hardware Attendance</div>
+                    <div class="flow-node-meta">ESP32 + BLE + Biometric Multi-Check</div>
+                  </div>
+                </div>
+                <span class="badge badge-amber">Hardware</span>
+              </div>
+
+              <div class="flow-connector">↓</div>
+
+              <div class="flow-node">
+                <div class="flow-node-left">
+                  <div class="flow-node-icon" style="color: var(--color-primary);">03</div>
+                  <div>
+                    <div class="flow-node-title">Learning & Evaluation</div>
+                    <div class="flow-node-meta">Multilingual LMS + Formative Tests</div>
+                  </div>
+                </div>
+                <span class="badge badge-primary">Academics</span>
+              </div>
+
+              <div class="flow-connector">↓</div>
+
+              <div class="flow-node">
+                <div class="flow-node-left">
+                  <div class="flow-node-icon" style="color: var(--color-secondary);">04</div>
+                  <div>
+                    <div class="flow-node-title">Verified Skill Passport</div>
+                    <div class="flow-node-meta">QR Verification & Tamper-Proof Badges</div>
+                  </div>
+                </div>
+                <span class="badge badge-secondary">Credential</span>
+              </div>
+
+              <div class="flow-connector">↓</div>
+
+              <div class="flow-node">
+                <div class="flow-node-left">
+                  <div class="flow-node-icon" style="color: var(--color-accent-cyan);">05</div>
+                  <div>
+                    <div class="flow-node-title">AI Guidance & Job Matching</div>
+                    <div class="flow-node-meta">Cooperative & Enterprise Opportunities</div>
+                  </div>
+                </div>
+                <span class="badge badge-cyan">Outcome</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px dashed var(--border-light); font-size: 0.75rem; text-align: center; color: var(--text-subtle);">
+              Outcome data returns to NCCT Central Layer for next-cycle curriculum improvement
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 1: THE PROBLEM STATEMENT & COMPARISON
+         ====================================================================== -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">01 • Problem Statement</span>
+          <h2 class="section-title">The Current Training Ecosystem Dilemma</h2>
+          <p class="section-desc">
+            Vocational and cooperative skilling in India spans thousands of training centres. However, without unified digital infrastructure, critical training data remains fractured, unreliable, and disconnected from the job market.
+          </p>
+        </div>
+
+        <!-- Side-by-Side Flow Comparison (Exact visual mapping from PPT) -->
+        <div class="problem-comparison-grid">
+          <!-- Column 1: Current System -->
+          <div class="comparison-col current">
+            <div class="col-header">
+              <div class="col-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                Current System Failures
+              </div>
+              <span class="badge badge-amber">Status Quo</span>
+            </div>
+
+            <div class="step-flow">
+              <div class="step-card">
+                <span class="step-number">1</span>
+                <span class="step-text">Information is scattered across different systems & paper registers</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">2</span>
+                <span class="step-text">Attendance is mostly simple check-in (vulnerable to misuse & proxies)</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">3</span>
+                <span class="step-text">Certificate is treated as the static end point of the journey</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">4</span>
+                <span class="step-text">Skills are self-declared on resumes without underlying test proofs</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">5</span>
+                <span class="step-text">Training and employment lack direct real-time connections</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">6</span>
+                <span class="step-text">Difficult to track overall training impact or learner post-training outcomes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: SUDO Solution -->
+          <div class="comparison-col solution">
+            <div class="col-header">
+              <div class="col-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Our Proposed Unified Approach
+              </div>
+              <span class="badge badge-secondary">SUDO Model</span>
+            </div>
+
+            <div class="step-flow">
+              <div class="step-card">
+                <span class="step-number">1</span>
+                <span class="step-text">One unified platform with a complete, persistent participant record</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">2</span>
+                <span class="step-text">Verified attendance using smart hardware (ESP32 + BLE + Biometrics)</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">3</span>
+                <span class="step-text">Certificate leads directly to a verifiable digital Skill Passport</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">4</span>
+                <span class="step-text">Skills backed by empirical training, practical marks & attendance metrics</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">5</span>
+                <span class="step-text">AI career guidance and direct matching to cooperative & industry jobs</span>
+              </div>
+              <div class="step-arrow">↓</div>
+
+              <div class="step-card">
+                <span class="step-number">6</span>
+                <span class="step-text">Continuous outcome feedback loop that improves next-cycle course syllabi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fact Cards: Why the Problem Exists -->
+        <div class="problem-facts-grid">
+          <div class="fact-card">
+            <div class="fact-icon warn">📁</div>
+            <h3 class="fact-title">Fragmented Data Silos</h3>
+            <p class="fact-desc">
+              Institutes maintain separate registers for admissions, attendance, exams, and certifications. If a candidate relocates between RICMs or ICMs, their cumulative skilling history is lost.
+            </p>
+          </div>
+
+          <div class="fact-card">
+            <div class="fact-icon warn">⏱️</div>
+            <h3 class="fact-title">Attendance Vulnerabilities</h3>
+            <p class="fact-desc">
+              Basic paper sign-ins or simple mobile geolocation apps are frequently prone to proxy attendance, absence masking, and lack verifiable classroom proximity validation.
+            </p>
+          </div>
+
+          <div class="fact-card">
+            <div class="fact-icon warn">📜</div>
+            <h3 class="fact-title">Certificates as "Dead Ends"</h3>
+            <p class="fact-desc">
+              Once an institute hands over a paper certificate, the relationship terminates. The governing bodies (NCCT/Ministry) have no automated visibility into whether the trainee obtained gainful employment.
+            </p>
+          </div>
+
+          <div class="fact-card">
+            <div class="fact-icon warn">🔍</div>
+            <h3 class="fact-title">Unverified Resume Claims</h3>
+            <p class="fact-desc">
+              Employers in the cooperative sector (PACS, Dairy Unions, Urban Banks) receive resumes with self-declared competencies that lack underlying empirical assessment validation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: OUR PROPOSED SOLUTION
+         ====================================================================== -->
+    <section class="section" id="solution">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">02 • Proposed Solution</span>
+          <h2 class="section-title">The Unified Training & Skill Ecosystem</h2>
+          <p class="section-desc">
+            A comprehensive, modular platform bridging the gap between classroom training, verified technical competencies, and long-term cooperative sector employment.
+          </p>
+        </div>
+
+        <!-- Formula Banner from PPT -->
+        <div class="solution-formula-banner">
+          <div class="formula-label">The Core Architectural Equation</div>
+          <div class="formula-equation">
+            <span class="formula-block highlight">UNIFIED PLATFORM</span>
+            <span class="formula-plus">=</span>
+            <span class="formula-block">LMS</span>
+            <span class="formula-plus">+</span>
+            <span class="formula-block">ERP</span>
+            <span class="formula-plus">+</span>
+            <span class="formula-block">SMART PRESENCE</span>
+            <span class="formula-plus">+</span>
+            <span class="formula-block">CAREER</span>
+            <span class="formula-plus">+</span>
+            <span class="formula-block">ANALYTICS</span>
+          </div>
+          <p style="margin-top: 1.25rem; font-size: 0.95rem; color: #cbd5e1; max-width: 780px; margin-left: auto; margin-right: auto;">
+            By integrating these five previously disconnected pillars into a shared data fabric, one participant maintains one complete digital record from registration through lifetime livelihood.
+          </p>
+        </div>
+
+        <!-- 5 Pillars Breakdown -->
+        <div class="solution-pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <div>
+                <h3 class="pillar-title">Learning Management (LMS)</h3>
+                <span class="badge badge-primary">Academic Core</span>
+              </div>
+            </div>
+            <p class="pillar-desc">
+              Modular curriculum delivery supporting multilingual online and offline lesson caching, multimedia resources, and voice-assisted navigation for rural learners.
+            </p>
+            <div class="pillar-list">
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Vernacular audio/voice & text translation
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Offline local caching for low-bandwidth zones
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Formative quizzes and practical grading rubrics
+              </div>
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+              <div>
+                <h3 class="pillar-title">Batch & Academic ERP</h3>
+                <span class="badge badge-primary">Institutional Core</span>
+              </div>
+            </div>
+            <p class="pillar-desc">
+              Streamlines candidate nomination, batch scheduling, faculty allocation, classroom logistics, and real-time attendance compliance across institute branches.
+            </p>
+            <div class="pillar-list">
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Federated batch rosters & scheduling
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Automated compliance & attendance monitoring
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Centralized student profile registry
+              </div>
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-icon" style="color: #f97316; background: #fff7ed;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+              </div>
+              <div>
+                <h3 class="pillar-title">Smart Presence (IoT)</h3>
+                <span class="badge badge-amber">Hardware-Assisted</span>
+              </div>
+            </div>
+            <p class="pillar-desc">
+              Modular ESP32 microcontrollers combined with Bluetooth Low Energy (BLE) beacon proximity checks and biometric verification, with dynamic QR fallback.
+            </p>
+            <div class="pillar-list">
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Physical classroom proximity validation
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Offline local storage with auto-sync
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Redundant dynamic QR / manual fallback modes
+              </div>
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-icon" style="color: var(--color-secondary); background: var(--color-secondary-subtle);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div>
+                <h3 class="pillar-title">Verified Skill Passport</h3>
+                <span class="badge badge-secondary">Credentialing</span>
+              </div>
+            </div>
+            <p class="pillar-desc">
+              Transforms static diplomas into dynamic proof-of-competence profiles backed by verified test scores, practical evaluations, and attendance telemetry.
+            </p>
+            <div class="pillar-list">
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Tamper-evident QR & Unique Certificate ID
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Empirical competency level mapping (L1-L5)
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Zero-friction third-party employer verification
+              </div>
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <div class="pillar-icon" style="color: var(--color-accent-cyan); background: var(--color-accent-cyan-subtle);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              </div>
+              <div>
+                <h3 class="pillar-title">AI Career & Matching</h3>
+                <span class="badge badge-cyan">Opportunity</span>
+              </div>
+            </div>
+            <p class="pillar-desc">
+              AI-assisted skill gap diagnostics and automated recommendation engine that links certified candidates directly with cooperative and rural enterprise vacancies.
+            </p>
+            <div class="pillar-list">
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Targeted upskilling recommendations
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Cooperative sector job & PACS matching
+              </div>
+              <div class="pillar-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Direct employer interview invitation pipeline
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: CORE PARTICIPANT JOURNEY (INTERACTIVE 10-STEP STEPPER)
+         ====================================================================== -->
+    <section class="section" id="journey">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">03 • Core Journey</span>
+          <h2 class="section-title">The 10-Stage Trainee Lifecycle</h2>
+          <p class="section-desc">
+            Explore how a participant navigates seamlessly from initial enrollment through smart classroom attendance, skill verification, career guidance, and post-placement tracking.
+          </p>
+        </div>
+
+        <div class="journey-container">
+          <!-- Stepper Navigation (Left) -->
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-subtle); margin-bottom: 0.75rem;">
+              Select Lifecycle Stage to Inspect
+            </div>
+            <div class="journey-stepper" id="journeyStepperNav">
+              <!-- Dynamically populated via data.js -->
+            </div>
+            <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+              <button class="btn btn-outline btn-sm" id="journeyPrevBtn" style="flex: 1;">← Previous</button>
+              <button class="btn btn-primary btn-sm" id="journeyNextBtn" style="flex: 1;">Next Step →</button>
+            </div>
+          </div>
+
+          <!-- Deep-Dive Details Panel (Right Sticky) -->
+          <div class="journey-details-panel" id="journeyDetailPanel">
+            <!-- Rendered by main.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: STAKEHOLDER ECOSYSTEM
+         ====================================================================== -->
+    <section class="section" id="ecosystem">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">04 • Stakeholder Ecosystem</span>
+          <h2 class="section-title">One Ecosystem. Many Users. Real Impact.</h2>
+          <p class="section-desc">
+            The SUDO platform orchestrates interactions across five critical cooperative and governmental training stakeholder groups.
+          </p>
+        </div>
+
+        <!-- Stakeholder Tabs -->
+        <div class="stakeholder-tabs">
+          <button class="stakeholder-tab-btn active" data-tab="trainee">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            Trainee / Learner
+          </button>
+          <button class="stakeholder-tab-btn" data-tab="trainer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            Trainer / Faculty
+          </button>
+          <button class="stakeholder-tab-btn" data-tab="institute">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            Training Institute (RICM/ICM)
+          </button>
+          <button class="stakeholder-tab-btn" data-tab="employer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            Employer / Cooperatives
+          </button>
+          <button class="stakeholder-tab-btn" data-tab="admin">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            NCCT Admin & Ministry
+          </button>
+        </div>
+
+        <!-- Pane: Trainee -->
+        <div class="stakeholder-pane active" id="pane-trainee">
+          <div class="stakeholder-role-card">
+            <span class="role-badge-large badge-primary">Candidate Empowerment</span>
+            <h3>Learner / Trainee</h3>
+            <p>
+              Underprivileged, rural, or cooperative personnel seeking verified skills, career certification, and direct linkage to hiring societies and private employers.
+            </p>
+            <div style="background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--color-primary);">
+              <strong>Core Benefit:</strong> One portable digital identity for their entire lifelong training trajectory with verifiable proofs.
+            </div>
+          </div>
+          <div class="stakeholder-feature-list">
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Single Sovereign Profile:</strong> Complete records of all attended workshops, diplomas, and credit hours across any accredited training centre.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Smart Attendance Logging:</strong> Fast, hardware-verified presence recording via classroom ESP32 terminals without manual signature paperwork.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Verified Skill Passport:</strong> Shareable QR-verified credential profile showcasing actual assessment competency scores to employers.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>AI Career Guidance:</strong> Personalized notifications identifying in-demand cooperative skills and targeted upskilling courses.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane: Trainer -->
+        <div class="stakeholder-pane" id="pane-trainer">
+          <div class="stakeholder-role-card">
+            <span class="role-badge-large badge-secondary">Instructional Excellence</span>
+            <h3>Trainer / NCCT Faculty</h3>
+            <p>
+              Instructors and domain experts delivering specialized vocational coursework, evaluating practical simulations, and mentoring cohorts.
+            </p>
+            <div style="background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--color-secondary);">
+              <strong>Core Benefit:</strong> Replaces tedious manual attendance roll-calls with real-time learner comprehension telemetry.
+            </div>
+          </div>
+          <div class="stakeholder-feature-list">
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Automated Presence Validation:</strong> ESP32 logs attendance automatically, freeing 15-20 minutes per lecture for active instruction.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Early Support Radar:</strong> Automated alerts pinpointing students falling below attendance thresholds or struggling with specific topics.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Practical Rubric Grading:</strong> Direct mobile scoring interface for vocational demonstrations and laboratory simulations.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane: Institute -->
+        <div class="stakeholder-pane" id="pane-institute">
+          <div class="stakeholder-role-card">
+            <span class="role-badge-large badge-amber">Operational Efficiency</span>
+            <h3>Training Institute (RICM / ICM)</h3>
+            <p>
+              Regional Institutes of Cooperative Management (RICMs) and Institutes of Cooperative Management (ICMs) executing sanctioned batches.
+            </p>
+            <div style="background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--color-accent-amber);">
+              <strong>Core Benefit:</strong> Unified campus ERP and automated compliance auditing for government-funded training schemes.
+            </div>
+          </div>
+          <div class="stakeholder-feature-list">
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Batch & Hall Scheduling:</strong> Conflict-free classroom allocation, batch capacity optimization, and resource tracking.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Tamper-Proof Certificate Dispatch:</strong> One-click generation of digitally signed certificates linked to the central NCCT registry.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Automated Utilization Reporting:</strong> Real-time generation of grant utilization and training count reports for auditing bodies.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane: Employer -->
+        <div class="stakeholder-pane" id="pane-employer">
+          <div class="stakeholder-role-card">
+            <span class="role-badge-large badge-cyan">Talent Discovery</span>
+            <h3>Employer & Cooperative Societies</h3>
+            <p>
+              Primary Agricultural Credit Societies (PACS), State Apex Cooperative Banks, Dairy Unions, and private agribusinesses seeking pre-vetted staff.
+            </p>
+            <div style="background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--color-accent-cyan);">
+              <strong>Core Benefit:</strong> Eliminate bogus resumes by filtering candidates based on empirically tested skill marks and verified attendance.
+            </div>
+          </div>
+          <div class="stakeholder-feature-list">
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Granular Competency Search:</strong> Search candidates by verified skill units (e.g. "PACS Accounting > 85%" and "Attendance > 90%").
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Instant Credential Verification:</strong> Scan certificate QR code or enter candidate ID to inspect authenticated transcripts in seconds.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Direct Interview Dispatch:</strong> Invite verified graduates directly through the portal without intermediary recruiter commissions.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane: Admin -->
+        <div class="stakeholder-pane" id="pane-admin">
+          <div class="stakeholder-role-card">
+            <span class="role-badge-large badge-primary">Data-Driven Governance</span>
+            <h3>NCCT Admin & Ministry</h3>
+            <p>
+              National Council for Cooperative Training (NCCT) and the Ministry of Cooperation providing macro-level policy direction and budget funding.
+            </p>
+            <div style="background: var(--bg-surface-alt); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--color-primary);">
+              <strong>Core Benefit:</strong> Shift from tracking pure "training headcounts" to evaluating actual economic outcomes and employment rates.
+            </div>
+          </div>
+          <div class="stakeholder-feature-list">
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>National Training Intelligence:</strong> Panoramic heatmaps showing skill availability and regional deficits across all Indian states.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Curriculum Optimization:</strong> Automatically identify underperforming courses based on post-training employer feedback.
+              </div>
+            </div>
+            <div class="stakeholder-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <div>
+                <strong>Evidence-Based Policy Funding:</strong> Channel resources into programmes that demonstrate verified high employment outcomes.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: SMART ATTENDANCE SYSTEM (HARDWARE DEEP DIVE)
+         ====================================================================== -->
+    <section class="section" id="attendance">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">05 • Smart Presence</span>
+          <h2 class="section-title">Hardware-Assisted Attendance System</h2>
+          <p class="section-desc">
+            A reliable, multi-check attendance framework built around modular ESP32 microcontrollers, Bluetooth Low Energy (BLE), and biometric verification — with robust offline and QR fallback modes.
+          </p>
+        </div>
+
+        <div class="tech-diagram-card">
+          <div class="diagram-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect></svg>
+            Proposed Hardware / Software Attendance Architecture
+          </div>
+
+          <!-- Hardware Flow Grid -->
+          <div class="hardware-flow-grid">
+            <div class="hw-node">
+              <div class="hw-icon">👤</div>
+              <div class="hw-node-title">1. Learner</div>
+              <div class="hw-node-desc">Physical classroom presence</div>
+            </div>
+
+            <div class="hw-node">
+              <div class="hw-icon">🪪</div>
+              <div class="hw-node-title">2. Identity</div>
+              <div class="hw-node-desc">Participant UID / NFC badge</div>
+            </div>
+
+            <div class="hw-node">
+              <div class="hw-icon">👆</div>
+              <div class="hw-node-title">3. Biometric</div>
+              <div class="hw-node-desc">Minutiae template extraction</div>
+            </div>
+
+            <div class="hw-node" style="border-color: #f97316;">
+              <div class="hw-icon" style="color: #ea580c; background: #fff7ed;">⚡</div>
+              <div class="hw-node-title">4. ESP32 Unit</div>
+              <div class="hw-node-desc">Modular IoT controller</div>
+            </div>
+
+            <div class="hw-node">
+              <div class="hw-icon">📡</div>
+              <div class="hw-node-title">5. BLE Signal</div>
+              <div class="hw-node-desc">Proximity beacon check</div>
+            </div>
+
+            <div class="hw-node">
+              <div class="hw-icon">💾</div>
+              <div class="hw-node-title">6. Local Flash</div>
+              <div class="hw-node-desc">Offline SQLite buffer</div>
+            </div>
+
+            <div class="hw-node">
+              <div class="hw-icon">🔄</div>
+              <div class="hw-node-title">7. Sync Worker</div>
+              <div class="hw-node-desc">Reconnection transmission</div>
+            </div>
+
+            <div class="hw-node" style="border-color: var(--color-primary);">
+              <div class="hw-icon" style="color: var(--color-primary); background: var(--color-primary-subtle);">🏛️</div>
+              <div class="hw-node-title">8. Central DB</div>
+              <div class="hw-node-desc">Institute dashboard & ledger</div>
+            </div>
+          </div>
+
+          <!-- Attendance Fallback & Terminology Rules -->
+          <div class="attendance-rules-box">
+            <div class="rules-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              Crucial Engineering Note: Honest Terminology & Multi-Tier Fallback
+            </div>
+            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+              In accordance with project guidelines, SUDO <strong>does not claim</strong> that biometric attendance is mathematically "100% proxy-proof" or "zero-fraud". In physical classrooms, hardware sensors may encounter smudges, BLE radios can suffer RF interference, and power cuts occur in rural training centres. Therefore, SUDO defines this as <strong>"hardware-assisted, multi-check verified attendance"</strong> backed by a strict contingency hierarchy:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 0.85rem; font-size: 0.825rem;">
+              <div style="background: var(--bg-surface); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <strong>Primary:</strong> ESP32 + Biometric Fingerprint + BLE classroom beacon validation.
+              </div>
+              <div style="background: var(--bg-surface); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <strong>Secondary Fallback:</strong> Time-expiring rolling QR code displayed on the trainer's terminal.
+              </div>
+              <div style="background: var(--bg-surface); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <strong>Tertiary Fallback:</strong> Authenticated trainer manual override logged with a supervisor cryptographic audit entry.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 6: DESIGNED FOR REAL-WORLD CONNECTIVITY (OFFLINE-FIRST)
+         ====================================================================== -->
+    <section class="section" id="offline">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">06 • Offline Resilience</span>
+          <h2 class="section-title">Designed for Real-World Connectivity</h2>
+          <p class="section-desc">
+            Rural and tier-3 training centres frequently endure network dropouts. SUDO is built offline-first so classroom operations never halt during connectivity failures.
+          </p>
+        </div>
+
+        <div class="offline-grid">
+          <div>
+            <div class="offline-flow-step">
+              <span class="offline-step-num">1</span>
+              <div>
+                <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Local Data Storage</h4>
+                <p style="font-size: 0.875rem;">
+                  Attendance timestamps, quiz attempts, and learning module progress are committed immediately to local SQLite edge databases on the ESP32 and IndexedDB inside client browsers.
+                </p>
+              </div>
+            </div>
+
+            <div class="offline-flow-step">
+              <span class="offline-step-num">2</span>
+              <div>
+                <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Continue Operations Seamlessly Offline</h4>
+                <p style="font-size: 0.875rem;">
+                  Instructors continue teaching, trainees complete offline-cached multilingual coursework, and attendance continues recording without throwing network timeouts or blocking UI states.
+                </p>
+              </div>
+            </div>
+
+            <div class="offline-flow-step">
+              <span class="offline-step-num">3</span>
+              <div>
+                <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Automatic Background Reconnection</h4>
+                <p style="font-size: 0.875rem;">
+                  When cellular or Wi-Fi connectivity returns, an encrypted background sync worker transmits differential record batches with cryptographic nonces to prevent duplicate entries.
+                </p>
+              </div>
+            </div>
+
+            <div class="offline-flow-step">
+              <span class="offline-step-num">4</span>
+              <div>
+                <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Central Platform & Dashboard Updated</h4>
+                <p style="font-size: 0.875rem;">
+                  The central NCCT database validates digital signatures, resolves conflicts via CRDTs, and updates the institute dashboard with verified attendance and score tallies.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-md);">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--color-secondary); font-weight: 700;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+              Edge-to-Cloud Synchronization Pipeline
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+              The diagram below highlights the resilient offline-first data lifecycle ensuring zero classroom interruption in remote cooperative institutes.
+            </p>
+            <div style="background: var(--bg-surface-alt); padding: 1.25rem; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.8; color: var(--text-main); border: 1px solid var(--border-light);">
+              [Local Attendance/Quiz Event]<br>
+              &nbsp;&nbsp;↓<br>
+              [IndexedDB / ESP32 SPIFFS Cache]<br>
+              &nbsp;&nbsp;↓ (Network Offline? Queued locally)<br>
+              [Network Ping Heartbeat: Online]<br>
+              &nbsp;&nbsp;↓<br>
+              [Encrypted Batch Payload (TLS 1.3)]<br>
+              &nbsp;&nbsp;↓<br>
+              [Central NCCT Ledger Ingestion]<br>
+              &nbsp;&nbsp;↓<br>
+              [Skill Passport Metric Updated]
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 7: LEARNING & LMS
+         ====================================================================== -->
+    <section class="section" id="lms">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">07 • Academic Management</span>
+          <h2 class="section-title">Integrated Learning Management System</h2>
+          <p class="section-desc">
+            Learning data is never treated as an isolated record; course progress, formative tests, and practical scores feed directly into the participant's verified skill profile.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem;">
+          <div class="fact-card">
+            <div class="fact-icon" style="background: var(--color-primary-subtle); color: var(--color-primary);">🌐</div>
+            <h3 class="fact-title">Multilingual & Voice Content</h3>
+            <p class="fact-desc">
+              Modules are localized into Hindi, English, and regional languages. Vernacular text-to-speech audio prompts assist rural learners with limited digital familiarity.
+            </p>
+          </div>
+
+          <div class="fact-card">
+            <div class="fact-icon" style="background: var(--color-secondary-subtle); color: var(--color-secondary);">📊</div>
+            <h3 class="fact-title">Real-Time Faculty Monitoring</h3>
+            <p class="fact-desc">
+              Trainers view dynamic cohort heatmaps showing which learning concepts are mastered and which require remedial lectures before final certification.
+            </p>
+          </div>
+
+          <div class="fact-card">
+            <div class="fact-icon" style="background: var(--color-accent-amber-light); color: var(--color-accent-amber);">📝</div>
+            <h3 class="fact-title">Formative & Practical Tests</h3>
+            <p class="fact-desc">
+              Rather than a single high-stakes final exam, learners undergo ongoing formative quizzes and rubric-based practical simulations (e.g. PACS accounting reconciliations).
+            </p>
+          </div>
+
+          <div class="fact-card">
+            <div class="fact-icon" style="background: var(--color-accent-cyan-subtle); color: var(--color-accent-cyan);">🔗</div>
+            <h3 class="fact-title">Direct Skill Record Binding</h3>
+            <p class="fact-desc">
+              Passing a module automatically credits the underlying competency badge to the trainee's sovereign Skill Passport, establishing an undeniable audit trail.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 8: VERIFIED SKILL PASSPORT (INTERACTIVE DEMO)
+         ====================================================================== -->
+    <section class="section" id="passport">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">08 • Sovereign Credentials</span>
+          <h2 class="section-title">Verified Skill Passport</h2>
+          <p class="section-desc">
+            Instead of treating a static paper diploma as the conclusion of training, SUDO synthesizes attendance, assessments, and certifications into a verifiable digital passport.
+          </p>
+        </div>
+
+        <div class="passport-demo-container">
+          <!-- Interactive Skill Passport Card -->
+          <div class="passport-card" id="passportCardContent">
+            <!-- Dynamically populated via renderSkillPassport() in main.js -->
+          </div>
+
+          <!-- Passport Profile Controls & Details -->
+          <div>
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 1.75rem; box-shadow: var(--shadow-sm); margin-bottom: 1.5rem;">
+              <h4 style="font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
+                <span>Switch Demo Profile</span>
+                <span class="badge badge-demo">DEMO DATA</span>
+              </h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Select a simulated trainee profile to view their empirical attendance and verified competencies:
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <button class="btn btn-outline btn-sm passport-toggle-btn active" style="justify-content: flex-start; text-align: left;">
+                  👤 Aarav Sharma — Diploma in Cooperative Banking (RICM Bengaluru)
+                </button>
+                <button class="btn btn-outline btn-sm passport-toggle-btn" style="justify-content: flex-start; text-align: left;">
+                  👤 Priya Patel — Dairy Supply Chain & Logistics (ICM Gandhinagar)
+                </button>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 1.75rem; box-shadow: var(--shadow-sm);">
+              <h4 style="font-weight: 700; margin-bottom: 0.75rem; color: var(--color-primary);">
+                Why This Replaces Self-Declared Resumes
+              </h4>
+              <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+                Traditional CVs state: <em>"Proficient in Cooperative Financial Audits"</em> with zero third-party evidence.
+              </p>
+              <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+                The SUDO Skill Passport proves:
+              </p>
+              <ul style="font-size: 0.85rem; color: var(--text-main); display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.5rem;">
+                <li>✓ Candidate attended 94.8% of accredited sessions (ESP32 verified).</li>
+                <li>✓ Scored 96% on Exam #CBA-401 covering PACS computerized accounting.</li>
+                <li>✓ Successfully cleared practical rubric evaluation under certified faculty.</li>
+                <li>✓ Registered under NCCT central ledger with verifiable cryptographic hash.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 9: CERTIFICATION & INTERACTIVE VERIFIER
+         ====================================================================== -->
+    <section class="section" id="certification">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">09 • Tamper-Proof Certification</span>
+          <h2 class="section-title">Certificate Verification Simulator</h2>
+          <p class="section-desc">
+            Test the live verification workflow used by cooperative societies, employers, and government inspectors to validate credentials in real time.
+          </p>
+        </div>
+
+        <div class="verify-widget-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+            <label for="certInput" style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">
+              Enter Certificate ID or Scan QR Code Payload:
+            </label>
+            <span class="badge badge-demo">SIMULATOR • DEMO DATA</span>
+          </div>
+
+          <div class="verify-input-group">
+            <input type="text" id="certInput" class="verify-input" value="SUDO-DEMO-2026-001" placeholder="e.g. SUDO-DEMO-2026-001">
+            <button class="btn btn-primary" id="verifyBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Verify Certificate
+            </button>
+          </div>
+
+          <div class="quick-verify-preset">
+            <span>Quick sample presets:</span>
+            <span class="preset-chip" data-cert-id="SUDO-DEMO-2026-001">SUDO-DEMO-2026-001</span>
+            <span class="preset-chip" data-cert-id="SUDO-DEMO-2026-002">SUDO-DEMO-2026-002</span>
+            <span class="preset-chip" data-cert-id="SUDO-DEMO-2026-003">SUDO-DEMO-2026-003</span>
+            <span class="preset-chip" data-cert-id="SUDO-INVALID-999" style="color: var(--color-accent-red);">Test Invalid</span>
+          </div>
+
+          <!-- Dynamic Verification Result Box -->
+          <div class="verification-result-box active" id="certResultBox">
+            <!-- Rendered by main.js performVerification() -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 10: AI CAREER GUIDANCE
+         ====================================================================== -->
+    <section class="section" id="ai-guidance">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">10 • AI Career Guidance</span>
+          <h2 class="section-title">AI-Assisted Career Navigation</h2>
+          <p class="section-desc">
+            Machine learning algorithms evaluate participant performance patterns, benchmark skills against live cooperative job postings, and provide targeted upskilling recommendations.
+          </p>
+        </div>
+
+        <!-- 6-Stage AI Conceptual Flow from PPT -->
+        <div class="ai-flow-steps">
+          <div class="ai-step-box">
+            <div class="ai-step-icon">1</div>
+            <div class="ai-step-title">Participant Data</div>
+            <div class="ai-step-desc">Attendance, quiz marks & practical scores</div>
+          </div>
+
+          <div class="ai-step-box">
+            <div class="ai-step-icon">2</div>
+            <div class="ai-step-title">Skill Profile</div>
+            <div class="ai-step-desc">Competency level extraction (L1-L5)</div>
+          </div>
+
+          <div class="ai-step-box">
+            <div class="ai-step-icon">3</div>
+            <div class="ai-step-title">Skill Gap Analysis</div>
+            <div class="ai-step-desc">Comparison with local cooperative demand</div>
+          </div>
+
+          <div class="ai-step-box">
+            <div class="ai-step-icon">4</div>
+            <div class="ai-step-title">Career Advice</div>
+            <div class="ai-step-desc">AI-supported pathway recommendations</div>
+          </div>
+
+          <div class="ai-step-box">
+            <div class="ai-step-icon">5</div>
+            <div class="ai-step-title">Relevant Training</div>
+            <div class="ai-step-desc">Nudge toward specific upskilling modules</div>
+          </div>
+
+          <div class="ai-step-box">
+            <div class="ai-step-icon">6</div>
+            <div class="ai-step-title">Live Opportunities</div>
+            <div class="ai-step-desc">Direct matching to hiring societies</div>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <div>
+            <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Responsible AI Framing</h4>
+            <p style="font-size: 0.875rem; color: var(--text-muted); max-width: 780px;">
+              SUDO does <strong>not</strong> make unrealistic claims of "guaranteed placement". Our algorithms act strictly as an <strong>"AI-assisted career advisory and diagnostic tool"</strong> designed to empower trainees and mentor faculty with objective skill gap insights.
+            </p>
+          </div>
+          <span class="badge badge-demo">ASSISTIVE AI MODEL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 11: JOB & OPPORTUNITY MATCHING
+         ====================================================================== -->
+    <section class="section" id="job-matching">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">11 • Economic Linkage</span>
+          <h2 class="section-title">Verified Skill-Based Job Matching</h2>
+          <p class="section-desc">
+            Directly connecting certified rural youth and cooperative trainees with apex banks, PACS societies, and private sector enterprises without middleman distortion.
+          </p>
+        </div>
+
+        <div class="job-matching-grid">
+          <!-- Job 1 -->
+          <div class="job-card">
+            <div class="job-header">
+              <div>
+                <h3 class="job-role">Junior PACS Operations Officer</h3>
+                <div class="job-org">Karnataka State Apex Cooperative Bank Ltd.</div>
+              </div>
+              <span class="match-percentage-badge">96% Skill Match</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-subtle);">
+              Location: Tumakuru / Bengaluru Rural • Sector: Cooperative Banking
+            </div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">
+              Required Skills vs Candidate Verification:
+            </div>
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+              <span class="badge badge-secondary">✓ Cooperative Accounting</span>
+              <span class="badge badge-secondary">✓ PACS Computerization</span>
+              <span class="badge badge-secondary">✓ Statutory Audit & KYC</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 0.75rem; border-top: 1px dashed var(--border-light); font-size: 0.8rem;">
+              <span style="font-weight: 700; color: var(--color-primary);">₹25,000 - ₹32,000 / mo</span>
+              <span class="badge badge-primary">Direct Shortlist Eligible</span>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="job-card">
+            <div class="job-header">
+              <div>
+                <h3 class="job-role">Cooperative Credit Analyst</h3>
+                <div class="job-org">District Central Cooperative Bank (DCCB)</div>
+              </div>
+              <span class="match-percentage-badge">89% Skill Match</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-subtle);">
+              Location: Mysuru, Karnataka • Sector: Financial Inclusion
+            </div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">
+              Required Skills vs Candidate Verification:
+            </div>
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+              <span class="badge badge-secondary">✓ Credit Risk Evaluation</span>
+              <span class="badge badge-secondary">✓ Core Banking Systems</span>
+              <span class="badge badge-amber">△ Financial Modeling (Gap)</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 0.75rem; border-top: 1px dashed var(--border-light); font-size: 0.8rem;">
+              <span style="font-weight: 700; color: var(--color-primary);">₹28,000 - ₹35,000 / mo</span>
+              <span class="badge badge-demo">Recommended Upskill Course</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+          <span class="badge badge-demo">DEMO JOB BOARD • SIMULATED VACANCIES FROM COOPERATIVE ECOSYSTEM</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 12: EMPLOYER / COOPERATIVE PORTAL
+         ====================================================================== -->
+    <section class="section" id="employer-portal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">12 • Employer Gateway</span>
+          <h2 class="section-title">Employer & Cooperative Portal</h2>
+          <p class="section-desc">
+            A dedicated portal allowing hiring societies, banks, and enterprises to specify required competencies, discover verified graduates, and verify certificates in bulk.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--shadow-md);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
+            <div style="background: var(--bg-surface-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏢</div>
+              <h4 style="font-size: 1rem; font-weight: 700;">1. Post Openings</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Define vacancies with required verified competency units and attendance baselines.</p>
+            </div>
+
+            <div style="background: var(--bg-surface-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</div>
+              <h4 style="font-size: 1rem; font-weight: 700;">2. Search Verified Talent</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Filter thousands of graduates across 33+ NCCT institutes based on empirical exam marks.</p>
+            </div>
+
+            <div style="background: var(--bg-surface-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛡️</div>
+              <h4 style="font-size: 1rem; font-weight: 700;">3. Inspect Skill Passports</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">View tamper-proof digital transcripts and verified attendance rates before interviews.</p>
+            </div>
+
+            <div style="background: var(--bg-surface-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">✉️</div>
+              <h4 style="font-size: 1rem; font-weight: 700;">4. Direct Candidate Connect</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Dispatch direct interview invitations and track candidate placement milestones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 13: TRAINING INTELLIGENCE & OUTCOME FEEDBACK LOOP
+         ====================================================================== -->
+    <section class="section" id="training-intelligence">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">13 • Training Intelligence</span>
+          <h2 class="section-title">The Circular Training-to-Outcome Feedback Loop</h2>
+          <p class="section-desc">
+            SUDO does not stop at graduation. Post-training employment telemetry feeds directly into syllabus redesign, ensuring public skilling funds target genuine economic demand.
+          </p>
+        </div>
+
+        <div class="circular-loop-wrapper">
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">
+            Continuous Improvement Circuit
+          </h3>
+          <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 680px; margin: 0 auto 1.5rem auto;">
+            Closing the loop: how post-training economic outcomes actively restructure subsequent educational offerings.
+          </p>
+
+          <!-- Circular Loop Nodes (Step by step flow from PPT) -->
+          <div class="loop-stages-strip">
+            <span class="loop-node">1. Training</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node">2. Learning</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node">3. Assessment</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node">4. Certification</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node">5. Skills</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node">6. Employment</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node">7. Outcome Data</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node">8. Analysis</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node">9. Skill Gaps</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-node" style="background: var(--color-secondary); color: #ffffff;">10. Improved Training</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; text-align: left;">
+            <div style="background: var(--bg-surface-alt); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <div style="font-weight: 800; color: var(--color-primary); margin-bottom: 0.35rem; font-size: 0.9rem;">
+                A. Outcome Telemetry Ingestion
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Tracks employment status, starting wages, employer skill satisfaction, and job retention at 3, 6, and 12-month post-training intervals.
+              </p>
+            </div>
+
+            <div style="background: var(--bg-surface-alt); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <div style="font-weight: 800; color: var(--color-accent-amber); margin-bottom: 0.35rem; font-size: 0.9rem;">
+                B. Gap Diagnostics & Analytics
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Identifies which modules failed to prepare candidates for hiring tests and flags emerging skills required by modernizing PACS.
+              </p>
+            </div>
+
+            <div style="background: var(--bg-surface-alt); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <div style="font-weight: 800; color: var(--color-secondary); margin-bottom: 0.35rem; font-size: 0.9rem;">
+                C. Curriculum Update Action
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Curriculum boards receive automated syllabus update recommendations before sanctioning subsequent batch budgets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 14: COOPERATIVE SKILL MAP & FEDERATED MODEL
+         ====================================================================== -->
+    <section class="section" id="skill-map">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">14 • Institutional Federation</span>
+          <h2 class="section-title">Cooperative Skill Map & Federated Architecture</h2>
+          <p class="section-desc">
+            The SUDO platform unites 14 RICMs, 19 ICMs, and external cooperative centres under one shared learning identity and common skill language.
+          </p>
+        </div>
+
+        <div class="federated-model-diagram">
+          <!-- NCCT Central Layer -->
+          <div class="fed-central-layer">
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.25rem;">
+              NCCT CENTRAL LAYER
+            </h3>
+            <div style="font-size: 0.875rem; color: #cbd5e1;">
+              National Council for Cooperative Training • Ministry of Cooperation, New Delhi
+            </div>
+            <div style="font-size: 0.8rem; margin-top: 0.5rem; color: #38bdf8;">
+              Central Skill Registry • Policy Oversight • National Outcome Analytics • Grant Allocation
+            </div>
+          </div>
+
+          <!-- Federated Branches from PPT -->
+          <div class="fed-branch-grid">
+            <div class="fed-branch-card">
+              <h4 style="font-weight: 700; color: var(--text-main);">RICM Institutes</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+                Regional Institutes (Bengaluru, Chandigarh, Gandhinagar, Kalyani, Patna)
+              </p>
+            </div>
+
+            <div class="fed-branch-card">
+              <h4 style="font-weight: 700; color: var(--text-main);">ICM Institutes</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+                Institutes of Cooperative Management (19 State-level centres nationwide)
+              </p>
+            </div>
+
+            <div class="fed-branch-card">
+              <h4 style="font-weight: 700; color: var(--text-main);">Other Partner Centres</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+                Junior Cooperative Training Centres (JCTCs) & District Cooperative Unions
+              </p>
+            </div>
+          </div>
+
+          <!-- Common Standards Strip from PPT -->
+          <div class="fed-shared-standards">
+            <div class="shared-standard-item">
+              <span>🪪</span> Common Learning Identity
+            </div>
+            <div class="shared-standard-item">
+              <span>💬</span> Common Skill Language
+            </div>
+            <div class="shared-standard-item">
+              <span>📋</span> Common Training Records
+            </div>
+            <div class="shared-standard-item">
+              <span>📈</span> Common Training Metrics
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <span class="badge badge-primary">Output: Macro Government Insights & Targeted Skilling Programmes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 15: PROPOSED TECHNICAL ARCHITECTURE (GROUNDED IN PPT)
+         ====================================================================== -->
+    <section class="section" id="architecture">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">15 • Technical Architecture</span>
+          <h2 class="section-title">Proposed Technical Architecture</h2>
+          <p class="section-desc">
+            Divided strictly into verified technologies cited in the project proposal: ESP32, BLE, Biometric, LMS, ERP, QR, Offline Storage, APIs, AI, and Analytics.
+          </p>
+        </div>
+
+        <div class="arch-layers-stack">
+          <!-- Layer 1: User Layer -->
+          <div class="arch-layer-card">
+            <div class="arch-layer-label">
+              <span class="arch-layer-sub">Client Interface</span>
+              <span class="arch-layer-name">1. User Layer</span>
+            </div>
+            <div class="arch-tech-chips">
+              <span class="tech-chip core">Trainee Mobile / PWA</span>
+              <span class="tech-chip core">Trainer Classroom Terminal</span>
+              <span class="tech-chip core">Institute Management Portal</span>
+              <span class="tech-chip core">Employer Discovery Gateway</span>
+              <span class="tech-chip core">NCCT Ministry Oversight Cockpit</span>
+            </div>
+          </div>
+
+          <!-- Layer 2: Edge / Hardware Layer -->
+          <div class="arch-layer-card">
+            <div class="arch-layer-label">
+              <span class="arch-layer-sub">Physical Classroom</span>
+              <span class="arch-layer-name">2. Hardware Layer</span>
+            </div>
+            <div class="arch-tech-chips">
+              <span class="tech-chip hardware">ESP32 SoC Microcontroller</span>
+              <span class="tech-chip hardware">Optical Biometric Fingerprint Sensor</span>
+              <span class="tech-chip hardware">Bluetooth Low Energy (BLE 4.2/5.0)</span>
+              <span class="tech-chip hardware">Local SPIFFS / SQLite Flash Buffer</span>
+              <span class="tech-chip core">Dynamic QR Fallback Terminal</span>
+            </div>
+          </div>
+
+          <!-- Layer 3: Application & ERP Platform -->
+          <div class="arch-layer-card">
+            <div class="arch-layer-label">
+              <span class="arch-layer-sub">Core Services</span>
+              <span class="arch-layer-name">3. Unified Platform</span>
+            </div>
+            <div class="arch-tech-chips">
+              <span class="tech-chip core">LMS Courseware Engine</span>
+              <span class="tech-chip core">Batch & Academic ERP</span>
+              <span class="tech-chip core">Smart Presence Broker</span>
+              <span class="tech-chip core">Assessment & Evaluation Module</span>
+              <span class="tech-chip core">RESTful Interoperability APIs</span>
+            </div>
+          </div>
+
+          <!-- Layer 4: Credential & Intelligence Layer -->
+          <div class="arch-layer-card">
+            <div class="arch-layer-label">
+              <span class="arch-layer-sub">Trust & Logic</span>
+              <span class="arch-layer-name">4. Credential & AI</span>
+            </div>
+            <div class="arch-tech-chips">
+              <span class="tech-chip core">Verified Skill Passport Vault</span>
+              <span class="tech-chip core">QR & Unique ID Signature Engine</span>
+              <span class="tech-chip core">AI Career Diagnostic Model</span>
+              <span class="tech-chip core">Job & Opportunity Matching Engine</span>
+            </div>
+          </div>
+
+          <!-- Layer 5: Data & Training Intelligence Layer -->
+          <div class="arch-layer-card">
+            <div class="arch-layer-label">
+              <span class="arch-layer-sub">Longitudinal Analytics</span>
+              <span class="arch-layer-name">5. Outcome Intelligence</span>
+            </div>
+            <div class="arch-tech-chips">
+              <span class="tech-chip core">Central Participant Master Ledger</span>
+              <span class="tech-chip core">Post-Training Outcome Tracker</span>
+              <span class="tech-chip core">Regional Skill Gap Diagnostics</span>
+              <span class="tech-chip core">Curriculum Revision Recommender</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 16: COMPLETE DATA FLOW SPECIFICATION
+         ====================================================================== -->
+    <section class="section" id="data-flow">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">16 • Information Architecture</span>
+          <h2 class="section-title">End-to-End Data Movement Lifecycle</h2>
+          <p class="section-desc">
+            Detailed specification answering what data is ingested, transformed, and produced at each stage of the participant journey.
+          </p>
+        </div>
+
+        <div class="data-table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Lifecycle Stage</th>
+                <th>Input Data Ingested</th>
+                <th>Core Processing Applied</th>
+                <th>Artifact / Record Created</th>
+                <th>Access Stakeholders</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1. Registration</td>
+                <td>Candidate demographics, Aadhaar e-KYC hash</td>
+                <td>De-duplication check against central registry</td>
+                <td>Unique Participant ID (UID), Master Profile</td>
+                <td>Trainee, Institute Registrar</td>
+              </tr>
+              <tr>
+                <td>2. Batch Assignment</td>
+                <td>Course code, RICM centre ID, academic dates</td>
+                <td>Seat vacancy verification, timetable binding</td>
+                <td>Enrolled Batch Manifest, Attendance Roster</td>
+                <td>Trainee, Trainer, Institute</td>
+              </tr>
+              <tr>
+                <td>3. Classroom Attendance</td>
+                <td>Fingerprint minutiae hash, BLE proximity signal</td>
+                <td>Multi-check timestamp & device serial validation</td>
+                <td>Verified Attendance Record, Offline Sync Buffer</td>
+                <td>Trainer, Institute Admin</td>
+              </tr>
+              <tr>
+                <td>4. Coursework & LMS</td>
+                <td>Module reads, audio prompts listened, time-on-task</td>
+                <td>Comprehension tracking, milestone thresholding</td>
+                <td>Learning Progress %, Topic Heatmap</td>
+                <td>Trainee, Trainer</td>
+              </tr>
+              <tr>
+                <td>5. Assessment</td>
+                <td>Quiz responses, practical simulation ratings</td>
+                <td>Automatic objective scoring, rubric normalization</td>
+                <td>Exam Score Transcript, Competency Ratings</td>
+                <td>Trainee, Assessor, Faculty</td>
+              </tr>
+              <tr>
+                <td>6. Certification</td>
+                <td>Cumulative attendance rate, assessment pass status</td>
+                <td>Digital signature generation, SHA-256 hashing</td>
+                <td>Verifiable PDF Certificate, Tamper-Evident QR</td>
+                <td>Trainee, Public Verifier</td>
+              </tr>
+              <tr>
+                <td>7. Skill Passport</td>
+                <td>Assessment grades, practical rubric points</td>
+                <td>Skill taxonomy mapping (Levels 1 to 5)</td>
+                <td>Verified Skill Passport JSON-LD Record</td>
+                <td>Trainee, Prospective Employers</td>
+              </tr>
+              <tr>
+                <td>8. Career Guidance</td>
+                <td>Verified skills, regional job requirements</td>
+                <td>AI skill gap evaluation, pathway recommendation</td>
+                <td>Personalized Upskilling Roadmap</td>
+                <td>Trainee, Academic Counselor</td>
+              </tr>
+              <tr>
+                <td>9. Opportunity Matching</td>
+                <td>Employer job criteria, candidate verified skills</td>
+                <td>Multi-criteria compatibility scoring</td>
+                <td>Shortlist Invite, Interview Notification</td>
+                <td>Employer, Trainee</td>
+              </tr>
+              <tr>
+                <td>10. Training Intelligence</td>
+                <td>Hiring status, starting wages, employer feedback</td>
+                <td>Longitudinal cohort aggregation, anomaly detection</td>
+                <td>National Skill Gap Report, Syllabus Update Advice</td>
+                <td>NCCT Policy, Ministry</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 17: SECURITY & PRIVACY
+         ====================================================================== -->
+    <section class="section" id="security">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">17 • Trust & Security</span>
+          <h2 class="section-title">Security Architecture & Privacy Safeguards</h2>
+          <p class="section-desc">
+            Rigorous data isolation and cryptographic audit trails ensuring student personal identity and biometric markers remain inviolable.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--shadow-md);">
+          <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; font-weight: 700; font-size: 0.9rem;">
+            <span class="badge badge-primary" style="padding: 0.5rem 1rem;">Authentication</span>
+            <span>→</span>
+            <span class="badge badge-primary" style="padding: 0.5rem 1rem;">Role-Based Access (RBAC)</span>
+            <span>→</span>
+            <span class="badge badge-primary" style="padding: 0.5rem 1rem;">Authorized Data Access</span>
+            <span>→</span>
+            <span class="badge badge-secondary" style="padding: 0.5rem 1rem;">TLS 1.3 / AES-256 Encryption</span>
+            <span>→</span>
+            <span class="badge badge-amber" style="padding: 0.5rem 1rem;">Audit Logging</span>
+            <span>→</span>
+            <span class="badge badge-cyan" style="padding: 0.5rem 1rem;">Continuous Monitoring</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+            <div style="background: var(--bg-surface-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+              <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">Zero Raw Biometric Storage</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                The ESP32 module never saves or transmits full raw fingerprint images. It only calculates a one-way mathematical minutiae vector, preventing identity replication.
+              </p>
+            </div>
+
+            <div style="background: var(--bg-surface-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+              <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--color-secondary);">Strict Role-Based Access</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Trainers can only view their assigned batch. Employers can only view verified skills of candidates who explicitly applied. Institutes cannot view other centres' internal finance.
+              </p>
+            </div>
+
+            <div style="background: var(--bg-surface-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+              <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--color-accent-amber);">Immutable Audit Logs</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Any administrative attendance adjustment, grade revision, or certificate issuance generates a non-repudiable audit ledger entry containing actor identity and timestamps.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 18: FEASIBILITY & VIABILITY
+         ====================================================================== -->
+    <section class="section" id="feasibility">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">18 • Feasibility & Scalability</span>
+          <h2 class="section-title">Feasibility, Viability & Ecosystem Scalability</h2>
+          <p class="section-desc">
+            Directly addressing the four core viability pillars outlined in the SIH submission template.
+          </p>
+        </div>
+
+        <div class="feasibility-grid">
+          <!-- Technical Feasibility -->
+          <div class="feasibility-card">
+            <div class="f-icon tech">⚙️</div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Technical Feasibility</h3>
+            <p style="font-size: 0.875rem; color: var(--text-muted);">Built upon proven, modular hardware and robust offline software.</p>
+            <div class="f-list">
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                ESP32 is inexpensive ($4-$6), reusable, and modular.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Attendance and learning data can be stored offline and synced later.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                LMS, ERP, Attendance, Assessments and Certification connect in one ecosystem.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Modular microservice architecture supports seamless future upgrades.
+              </div>
+            </div>
+          </div>
+
+          <!-- Operational Feasibility -->
+          <div class="feasibility-card">
+            <div class="f-icon ops">📋</div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Operational Feasibility</h3>
+            <p style="font-size: 0.875rem; color: var(--text-muted);">Minimizes digital cognitive friction for non-technical users.</p>
+            <div class="f-list">
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Users see only the specific functions they need for their role.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                All training activities remain connected inside a unified system.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                BLE / QR attendance with offline fallback prevents classroom stalls.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Automated compliance reports simplify regulatory monitoring.
+              </div>
+            </div>
+          </div>
+
+          <!-- Economic Viability -->
+          <div class="feasibility-card">
+            <div class="f-icon econ">💰</div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Economic Viability</h3>
+            <p style="font-size: 0.875rem; color: var(--text-muted);">Delivers long-term administrative cost reductions.</p>
+            <div class="f-list">
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Reusable low-cost hardware eliminates expensive proprietary biometric kiosks.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                One shared cloud platform serves dozens of regional training centres.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Eliminates paper registers, courier fees, and manual verification labor.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                AI reduces repeated manual advising and reporting overhead.
+              </div>
+            </div>
+          </div>
+
+          <!-- Ecosystem Scalability -->
+          <div class="feasibility-card">
+            <div class="f-icon scale">🌐</div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Ecosystem Scalability</h3>
+            <p style="font-size: 0.875rem; color: var(--text-muted);">Federated expansion across India's cooperative training network.</p>
+            <div class="f-list">
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                One connected training and skill record maintained across all centres.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                NCCT HQ can view training, skills, and outcomes across all RICMs & ICMs.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                New cooperative institutes can onboard without rebuilding core systems.
+              </div>
+              <div class="f-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Central layer aggregates cross-centre analytics for national policy.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 19: RISKS & MITIGATION MATRIX
+         ====================================================================== -->
+    <section class="section" id="risks">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">19 • Risk Management</span>
+          <h2 class="section-title">The 5 Core Risks & Concrete Mitigations</h2>
+          <p class="section-desc">
+            Directly mapping the five vulnerability scenarios identified in the PPT to concrete engineering and operational strategies.
+          </p>
+        </div>
+
+        <div class="risk-matrix-grid">
+          <!-- Risk 1 -->
+          <div class="risk-card">
+            <div class="risk-header">
+              <span class="risk-num-tag">Risk 01</span>
+              <span class="badge badge-amber">Data Fragmentation</span>
+            </div>
+            <h3 class="risk-title">Fragmented Data & Legacy Systems</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Training data may remain scattered across different institutes and pre-existing paper or Excel records.
+            </p>
+            <div class="risk-mitigation-box">
+              <div class="mitigation-label">Strategy: Data Integration</div>
+              Use common open data formats, lightweight adapter microservices, and RESTful APIs to integrate legacy systems into the unified participant registry.
+            </div>
+          </div>
+
+          <!-- Risk 2 -->
+          <div class="risk-card">
+            <div class="risk-header">
+              <span class="risk-num-tag">Risk 02</span>
+              <span class="badge badge-amber">Connectivity Failure</span>
+            </div>
+            <h3 class="risk-title">Poor Internet Connectivity</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Weak connectivity in rural and tribal cooperative centres may interrupt online learning, attendance, and data sync.
+            </p>
+            <div class="risk-mitigation-box">
+              <div class="mitigation-label">Strategy: Offline-First Design</div>
+              Store data locally on ESP32 flash and browser IndexedDB; continue all operations offline and synchronize automatically when connectivity returns.
+            </div>
+          </div>
+
+          <!-- Risk 3 -->
+          <div class="risk-card">
+            <div class="risk-header">
+              <span class="risk-num-tag">Risk 03</span>
+              <span class="badge badge-amber">Adoption Friction</span>
+            </div>
+            <h3 class="risk-title">User Adoption & Digital Literacy</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Trainees, cooperative secretaries, and faculty may need time and structured support to adopt the new platform.
+            </p>
+            <div class="risk-mitigation-box">
+              <div class="mitigation-label">Strategy: Simple User Experience</div>
+              Keep user interfaces strictly minimal and intuitive, incorporate vernacular voice navigation, and deliver 30-minute orientation modules.
+            </div>
+          </div>
+
+          <!-- Risk 4 -->
+          <div class="risk-card">
+            <div class="risk-header">
+              <span class="risk-num-tag">Risk 04</span>
+              <span class="badge badge-amber">Data Privacy</span>
+            </div>
+            <h3 class="risk-title">Data Privacy & Attendance Security</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Learner identity markers and training records must be strictly protected from unauthorized access or surveillance misuse.
+            </p>
+            <div class="risk-mitigation-box">
+              <div class="mitigation-label">Strategy: Secure Data Handling</div>
+              Deploy zero-knowledge biometric hashes, strict Role-Based Access Control (RBAC), TLS 1.3 transport encryption, and immutable audit logs.
+            </div>
+          </div>
+
+          <!-- Risk 5 -->
+          <div class="risk-card">
+            <div class="risk-header">
+              <span class="risk-num-tag">Risk 05</span>
+              <span class="badge badge-amber">Hardware Reliability</span>
+            </div>
+            <h3 class="risk-title">Attendance / Device Reliability</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Bluetooth Low Energy (BLE) radio dropouts or physical device failures may occasionally affect automatic attendance records.
+            </p>
+            <div class="risk-mitigation-box">
+              <div class="mitigation-label">Strategy: Fallback Attendance</div>
+              Enforce a multi-tier fallback: automatically revert to dynamic time-expiring rolling QR codes or authenticated supervisor manual override.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 20: IMPACT & BENEFITS
+         ====================================================================== -->
+    <section class="section" id="impact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">20 • Impact & Benefits</span>
+          <h2 class="section-title">Transforming the Cooperative Training Landscape</h2>
+          <p class="section-desc">
+            Measurable advantages across five key stakeholder groups and four multidimensional benefit quadrants.
+          </p>
+        </div>
+
+        <!-- 4 Distinct Benefit Quadrants (From PPT) -->
+        <div class="benefits-quad-grid">
+          <div class="quad-card social">
+            <div class="quad-title" style="color: #2563eb;">
+              <span>🌐</span> Social Benefits
+            </div>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.6rem;">
+              <li>• Rural and underserved learners gain equal access to high-quality training.</li>
+              <li>• Offline caching ensures remote communities are never disenfranchised by poor bandwidth.</li>
+              <li>• Local-language and vernacular voice support reduce digital barriers.</li>
+              <li>• Promotes social inclusion across diverse rural cooperative cadres.</li>
+            </ul>
+          </div>
+
+          <div class="quad-card economic">
+            <div class="quad-title" style="color: var(--color-secondary);">
+              <span>📈</span> Economic Benefits
+            </div>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.6rem;">
+              <li>• Verified skills are directly connected with suitable cooperative job opportunities.</li>
+              <li>• Employers find pre-vetted candidates without costly recruiting agency fees.</li>
+              <li>• Better skill matching reduces the gap between vocational training and gainful employment.</li>
+              <li>• Lifts rural household earning potential through accredited livelihood paths.</li>
+            </ul>
+          </div>
+
+          <div class="quad-card operational">
+            <div class="quad-title" style="color: var(--color-primary);">
+              <span>⚙️</span> Operational Benefits
+            </div>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.6rem;">
+              <li>• Eliminates dependency on scattered paper registers and duplicate spreadsheets.</li>
+              <li>• Streamlines daily batch attendance and classroom coordination.</li>
+              <li>• Instant access to verified student information across federated centres.</li>
+              <li>• Regulatory grant compliance reports generated automatically in minutes.</li>
+            </ul>
+          </div>
+
+          <div class="quad-card educational">
+            <div class="quad-title" style="color: #7c3aed;">
+              <span>🎓</span> Educational Benefits
+            </div>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.6rem;">
+              <li>• Continuous learner comprehension tracking replaces end-of-year cramming.</li>
+              <li>• Weak areas and skill gaps are diagnosed early through formative tests.</li>
+              <li>• Tailored course suggestions are nudged based on actual learner aptitude.</li>
+              <li>• Curriculum updates are driven by post-placement employer feedback.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5 Stakeholder Impact Cards from PPT -->
+        <div style="margin-top: 3.5rem;">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem; text-align: center;">
+            Stakeholder Value Realization
+          </h3>
+          <div class="stakeholder-impact-grid">
+            <div class="impact-card">
+              <div class="impact-card-title">1. Learners & Trainees</div>
+              <p style="font-size: 0.825rem; color: var(--text-muted);">
+                One permanent profile for their entire training journey. Skill gaps become visible, verified competencies unlock jobs, and vernacular voice guidance simplifies learning.
+              </p>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-card-title">2. Trainers & NCCT Faculty</div>
+              <p style="font-size: 0.825rem; color: var(--text-muted);">
+                One unified screen for batches, attendance, and progress. Early visibility of learners who need support, less routine administrative paperwork, and more dedicated teaching time.
+              </p>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-card-title">3. Training Institutes</div>
+              <p style="font-size: 0.825rem; color: var(--text-muted);">
+                Training records stay permanently connected. Clear visibility into programme performance, faster reporting, and effortless tamper-proof certificate verification.
+              </p>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-card-title">4. Ministry & NCCT</div>
+              <p style="font-size: 0.825rem; color: var(--text-muted);">
+                Shifts governance focus from simple "training headcounts" toward verifiable economic outcome tracking. Pinpoint regional skill gaps and plan targeted future funding.
+              </p>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-card-title">5. Cooperative Ecosystem</div>
+              <p style="font-size: 0.825rem; color: var(--text-muted);">
+                Connects learner, trainer, institute, NCCT, ministry, and hiring employers in ONE federated ecosystem — fostering a self-reliant, skilled cooperative workforce for India.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 21: INTERACTIVE DASHBOARDS SUITE (5 SWITCHABLE VIEWS)
+         ====================================================================== -->
+    <section class="section" id="dashboards">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">21 • Live Prototype Mockups</span>
+          <h2 class="section-title">Stakeholder Dashboard Suite</h2>
+          <p class="section-desc">
+            Explore interactive role-specific cockpit views designed for each participant in the ecosystem. All figures and tables represent simulated demonstration data.
+          </p>
+        </div>
+
+        <div class="dashboards-wrapper">
+          <!-- Switcher Navigation Bar -->
+          <div class="dash-switch-nav">
+            <button class="dash-tab-btn active" data-dash="trainee">
+              👤 Trainee Cockpit
+            </button>
+            <button class="dash-tab-btn" data-dash="trainer">
+              👨‍🏫 Trainer Cockpit
+            </button>
+            <button class="dash-tab-btn" data-dash="institute">
+              🏛️ Institute Cockpit (RICM)
+            </button>
+            <button class="dash-tab-btn" data-dash="admin">
+              🇮🇳 NCCT HQ / Ministry Cockpit
+            </button>
+            <button class="dash-tab-btn" data-dash="employer">
+              🏢 Employer / Cooperative Portal
+            </button>
+          </div>
+
+          <!-- Panel 1: Trainee Dashboard -->
+          <div class="dashboard-panel active" id="dash-trainee">
+            <div class="dash-header-bar">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800;">Trainee Dashboard: Aarav Sharma</h3>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Participant ID: NCCT-2026-IND-08492 • Diploma in Cooperative Banking (RICM Bengaluru)</div>
+              </div>
+              <span class="badge badge-demo">SIMULATED DEMO DATA</span>
+            </div>
+
+            <div class="dash-metrics-row">
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-secondary);">94.8%</div>
+                <div class="metric-lbl">Hardware Verified Attendance</div>
+                <div class="metric-trend">↑ 2.1% (ESP32 Multi-check)</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-primary);">3 of 4</div>
+                <div class="metric-lbl">Modules Completed</div>
+                <div class="metric-trend">75% Coursework Progress</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-accent-amber);">8 Badges</div>
+                <div class="metric-lbl">Verified Competencies</div>
+                <div class="metric-trend">Level 4 Skill Mastery</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-accent-cyan);">6 Openings</div>
+                <div class="metric-lbl">Matched Cooperative Jobs</div>
+                <div class="metric-trend">3 Direct Interview Invites</div>
+              </div>
+            </div>
+
+            <div class="dash-widgets-grid">
+              <div class="dash-widget">
+                <div class="widget-title">
+                  <span>Recent Training Telemetry</span>
+                  <span class="badge badge-primary">Live Feed</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem;">
+                  <div style="padding: 0.6rem; background: var(--bg-surface); border-radius: var(--radius-sm); border-left: 3px solid var(--color-secondary);">
+                    <strong>09:14 AM Today:</strong> ESP32 Presence logged for "Advanced Financial Inclusion" (Classroom 302).
+                  </div>
+                  <div style="padding: 0.6rem; background: var(--bg-surface); border-radius: var(--radius-sm); border-left: 3px solid var(--color-primary);">
+                    <strong>Yesterday 04:30 PM:</strong> Passed Summative Exam: "Credit Risk Analysis" with 91% (Distinction).
+                  </div>
+                  <div style="padding: 0.6rem; background: var(--bg-surface); border-radius: var(--radius-sm); border-left: 3px solid var(--color-accent-amber);">
+                    <strong>3 Days Ago:</strong> Issued Verified Certificate SUDO-DEMO-2026-001 with cryptographically sealed QR.
+                  </div>
+                </div>
+              </div>
+
+              <div class="dash-widget">
+                <div class="widget-title">
+                  <span>AI Career Diagnostic</span>
+                  <span class="badge badge-cyan">Guidance</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                  Your profile matches 96% of requirements for <strong>Junior PACS Operations Officer</strong>.
+                </p>
+                <div style="background: var(--bg-surface); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.8rem; border: 1px dashed var(--border-medium);">
+                  💡 <strong>Suggested Upskill:</strong> Completing the 4-hour "Agricultural Commodity Trading" module unlocks 4 additional senior vacancies.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 2: Trainer Dashboard -->
+          <div class="dashboard-panel" id="dash-trainer">
+            <div class="dash-header-bar">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800;">Trainer Cockpit: Prof. S. R. Deshmukh</h3>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Senior Faculty, RICM Bengaluru • Batch: RICM-BLR-2026-B1 (Cooperative Banking)</div>
+              </div>
+              <span class="badge badge-demo">SIMULATED DEMO DATA</span>
+            </div>
+
+            <div class="dash-metrics-row">
+              <div class="metric-card">
+                <div class="metric-val">48 Trainees</div>
+                <div class="metric-lbl">Active Cohort Strength</div>
+                <div class="metric-trend">100% Enrollment Cap</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-secondary);">93.4%</div>
+                <div class="metric-lbl">Average Classroom Attendance</div>
+                <div class="metric-trend">ESP32 Hardware Verified</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-primary);">86.2%</div>
+                <div class="metric-lbl">Comprehension Index</div>
+                <div class="metric-trend">Formative Quiz Average</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-accent-amber);">3 Trainees</div>
+                <div class="metric-lbl">Learners Flagged for Support</div>
+                <div class="metric-trend">Early Intervention Radar</div>
+              </div>
+            </div>
+
+            <div class="dash-widget">
+              <div class="widget-title">
+                <span>Early Academic & Attendance Support Alerts</span>
+                <span class="badge badge-amber">Action Required</span>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Candidate Name</th>
+                    <th>Diagnosed Issue</th>
+                    <th>Recommended Intervention</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Karan Singhal</strong></td>
+                    <td>Attendance dropped to 72% in past 10 days (BLE Log)</td>
+                    <td>Trigger Counselor Check-in</td>
+                    <td><button class="btn btn-outline btn-sm">Schedule Call</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sunita Mahajan</strong></td>
+                    <td>Scored 58% on "Statutory Cooperative Audit" Quiz</td>
+                    <td>Assign Remedial Video Lab</td>
+                    <td><button class="btn btn-outline btn-sm">Send Resource</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Deepak Rawat</strong></td>
+                    <td>Missed 2 consecutive practical rubric evaluations</td>
+                    <td>Classroom Re-evaluation Session</td>
+                    <td><button class="btn btn-outline btn-sm">Schedule Retest</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Panel 3: Institute Dashboard -->
+          <div class="dashboard-panel" id="dash-institute">
+            <div class="dash-header-bar">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800;">Institute Dashboard: RICM Bengaluru</h3>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Regional Institute of Cooperative Management • Karnataka Zone</div>
+              </div>
+              <span class="badge badge-demo">SIMULATED DEMO DATA</span>
+            </div>
+
+            <div class="dash-metrics-row">
+              <div class="metric-card">
+                <div class="metric-val">420 Trainees</div>
+                <div class="metric-lbl">Active Enrolled Candidates</div>
+                <div class="metric-trend">Across 8 Active Batches</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-secondary);">14 Units</div>
+                <div class="metric-lbl">ESP32 Hardware Gateways</div>
+                <div class="metric-trend">100% Operational & Synced</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-primary);">91.8%</div>
+                <div class="metric-lbl">Campus Completion Rate</div>
+                <div class="metric-trend">↑ 4.5% vs Last Year</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-accent-cyan);">386 Verified</div>
+                <div class="metric-lbl">Certificates Dispatched</div>
+                <div class="metric-trend">Zero Forgery Incidents</div>
+              </div>
+            </div>
+
+            <div class="dash-widget">
+              <div class="widget-title">
+                <span>Active Batch Operational Summary</span>
+                <span class="badge badge-primary">Campus View</span>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Batch Code</th>
+                    <th>Course Programme</th>
+                    <th>Strength</th>
+                    <th>Attendance %</th>
+                    <th>Current Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>RICM-BLR-2026-B1</td>
+                    <td>Cooperative Banking & Digital Finance</td>
+                    <td>48</td>
+                    <td style="color: var(--color-secondary); font-weight: 700;">94.8%</td>
+                    <td><span class="badge badge-secondary">In Progress</span></td>
+                  </tr>
+                  <tr>
+                    <td>RICM-BLR-2026-B2</td>
+                    <td>PACS Computerization & ERP</td>
+                    <td>60</td>
+                    <td style="color: var(--color-secondary); font-weight: 700;">92.1%</td>
+                    <td><span class="badge badge-secondary">In Progress</span></td>
+                  </tr>
+                  <tr>
+                    <td>RICM-BLR-2026-D1</td>
+                    <td>Agri-Cooperative Marketing & Cold Chains</td>
+                    <td>45</td>
+                    <td style="font-weight: 700;">89.4%</td>
+                    <td><span class="badge badge-amber">Final Exams</span></td>
+                  </tr>
+                  <tr>
+                    <td>RICM-BLR-2026-E3</td>
+                    <td>Executive Training in Cooperative Law</td>
+                    <td>35</td>
+                    <td style="color: var(--color-secondary); font-weight: 700;">96.5%</td>
+                    <td><span class="badge badge-primary">Completed</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Panel 4: Admin / NCCT Dashboard -->
+          <div class="dashboard-panel" id="dash-admin">
+            <div class="dash-header-bar">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800;">National Council for Cooperative Training (NCCT)</h3>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Ministry of Cooperation, New Delhi • National Training Intelligence Cockpit</div>
+              </div>
+              <span class="badge badge-demo">SIMULATED DEMO DATA</span>
+            </div>
+
+            <div class="dash-metrics-row">
+              <div class="metric-card">
+                <div class="metric-val">33 Institutes</div>
+                <div class="metric-lbl">Federated Training Centres</div>
+                <div class="metric-trend">14 RICMs + 19 ICMs</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-secondary);">14,820</div>
+                <div class="metric-lbl">Certified Skilled Workforce</div>
+                <div class="metric-trend">Verified Skill Passports</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-primary);">78.4%</div>
+                <div class="metric-lbl">Post-Training Employment Rate</div>
+                <div class="metric-trend">Tracked at 6-month Window</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-accent-amber);">PACS FinTech</div>
+                <div class="metric-lbl">Critical National Skill Gap</div>
+                <div class="metric-trend">3,200 Surplus Vacancies</div>
+              </div>
+            </div>
+
+            <div class="dash-widget">
+              <div class="widget-title">
+                <span>Zonal Skilling Telemetry & Outcome Rates</span>
+                <span class="badge badge-primary">National Audit</span>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Geographic Zone</th>
+                    <th>Institutes Included</th>
+                    <th>Active Trainees</th>
+                    <th>Placement Outcome %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Southern Zone (Bengaluru, Chennai, Hyderabad)</td>
+                    <td>7 Centres</td>
+                    <td>3,420</td>
+                    <td style="color: var(--color-secondary); font-weight: 700;">84.2%</td>
+                  </tr>
+                  <tr>
+                    <td>Western Zone (Gandhinagar, Pune, Nagpur)</td>
+                    <td>6 Centres</td>
+                    <td>2,980</td>
+                    <td style="color: var(--color-secondary); font-weight: 700;">81.6%</td>
+                  </tr>
+                  <tr>
+                    <td>Northern Zone (Chandigarh, Lucknow, Dehradun)</td>
+                    <td>8 Centres</td>
+                    <td>3,810</td>
+                    <td style="font-weight: 700;">76.8%</td>
+                  </tr>
+                  <tr>
+                    <td>Eastern & North-East Zone (Kolkata, Guwahati, Patna)</td>
+                    <td>12 Centres</td>
+                    <td>4,610</td>
+                    <td style="font-weight: 700;">73.1%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Panel 5: Employer Dashboard -->
+          <div class="dashboard-panel" id="dash-employer">
+            <div class="dash-header-bar">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800;">Employer Portal: Apex Cooperative Banking Federation</h3>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Verified Talent Discovery & Recruitment Cockpit</div>
+              </div>
+              <span class="badge badge-demo">SIMULATED DEMO DATA</span>
+            </div>
+
+            <div class="dash-metrics-row">
+              <div class="metric-card">
+                <div class="metric-val">18 Openings</div>
+                <div class="metric-lbl">Active Posted Vacancies</div>
+                <div class="metric-trend">Across 4 Cooperative Sectors</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-secondary);">142 Matches</div>
+                <div class="metric-lbl">Pre-Vetted Candidates</div>
+                <div class="metric-trend">>85% Competency Match</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-primary);">318 Inquiries</div>
+                <div class="metric-lbl">Instant Verifications Run</div>
+                <div class="metric-trend">100% Cryptographic Match</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val" style="color: var(--color-accent-cyan);">24 Trainees</div>
+                <div class="metric-lbl">Interviews Scheduled</div>
+                <div class="metric-trend">Avg Time-to-Hire: 6 Days</div>
+              </div>
+            </div>
+
+            <div class="dash-widget">
+              <div class="widget-title">
+                <span>Top Matched Candidates for "Junior PACS Operations Officer"</span>
+                <span class="badge badge-secondary">Verified Profiles</span>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Candidate Name</th>
+                    <th>Participant UID</th>
+                    <th>Skill Match</th>
+                    <th>Training Institute</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Aarav Sharma</strong></td>
+                    <td class="mono">NCCT-2026-IND-08492</td>
+                    <td style="color: var(--color-secondary); font-weight: 700;">96%</td>
+                    <td>RICM Bengaluru</td>
+                    <td><button class="btn btn-primary btn-sm">View Passport</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Meenakshi Sundaram</strong></td>
+                    <td class="mono">NCCT-2026-IND-08503</td>
+                    <td style="color: var(--color-secondary); font-weight: 700;">94%</td>
+                    <td>RICM Bengaluru</td>
+                    <td><button class="btn btn-primary btn-sm">View Passport</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ravi Teja</strong></td>
+                    <td class="mono">NCCT-2026-IND-08611</td>
+                    <td style="font-weight: 700;">91%</td>
+                    <td>ICM Hyderabad</td>
+                    <td><button class="btn btn-outline btn-sm">Under Review</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sunita Mahajan</strong></td>
+                    <td class="mono">NCCT-2026-IND-08544</td>
+                    <td style="font-weight: 700;">87%</td>
+                    <td>RICM Bengaluru</td>
+                    <td><button class="btn btn-outline btn-sm">Invite Interview</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 22: FUTURE SCOPE
+         ====================================================================== -->
+    <section class="section" id="future-scope">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">22 • Future Roadmap</span>
+          <h2 class="section-title">Future Scope & Strategic Expansion</h2>
+          <p class="section-desc">
+            Clearly labeled post-hackathon evolutionary directions to be implemented upon nationwide pilot sanction.
+          </p>
+        </div>
+
+        <div class="future-scope-grid">
+          <div class="scope-card">
+            <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Pan-India Institute Expansion</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Broaden deployment from the initial RICM pilot sites to all 14 RICMs, 19 ICMs, and over 100+ state cooperative training societies.
+            </p>
+          </div>
+
+          <div class="scope-card">
+            <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Multimodal Vernacular Voice AI</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Integrate conversational AI voice bots in 12+ official Indian languages for candidates with low digital reading literacy.
+            </p>
+          </div>
+
+          <div class="scope-card">
+            <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Computer Vision Practical Grading</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Investigate edge camera AI to assist instructors in verifying physical dairy or agricultural processing laboratory techniques.
+            </p>
+          </div>
+
+          <div class="scope-card">
+            <h4 style="font-weight: 700; margin-bottom: 0.5rem;">National Skill Registry Interoperability</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Bridge SUDO Skill Passports into national frameworks like NCVET, Skill India Digital (SID), and DigiLocker via open APIs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 23: RESEARCH & REFERENCES
+         ====================================================================== -->
+    <section class="section" id="references">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">23 • Academic Bibliography</span>
+          <h2 class="section-title">Research & Technical References</h2>
+          <p class="section-desc">
+            Factual reference structure grounding the SUDO architecture in official guidelines, technical specifications, and academic standards without fabricated links.
+          </p>
+        </div>
+
+        <div class="references-list">
+          <div class="ref-item">
+            <span class="ref-num">[01]</span>
+            <div>
+              <div style="font-weight: 700; color: var(--text-main);">Smart India Hackathon 2026 Operational Guidelines</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Ministry of Education’s Innovation Cell (MIC), AICTE, Government of India.</div>
+            </div>
+          </div>
+
+          <div class="ref-item">
+            <span class="ref-num">[02]</span>
+            <div>
+              <div style="font-weight: 700; color: var(--text-main);">National Council for Cooperative Training (NCCT) Training Reports</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Ministry of Cooperation, Government of India — Frameworks for RICMs, ICMs, and PACS Computerization Initiatives.</div>
+            </div>
+          </div>
+
+          <div class="ref-item">
+            <span class="ref-num">[03]</span>
+            <div>
+              <div style="font-weight: 700; color: var(--text-main);">ESP32 Series SoC Technical Reference Manual & BLE Architecture</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Espressif Systems — Bluetooth Low Energy Physical Layer, GATT Specifications and FreeRTOS integration.</div>
+            </div>
+          </div>
+
+          <div class="ref-item">
+            <span class="ref-num">[04]</span>
+            <div>
+              <div style="font-weight: 700; color: var(--text-main);">Bluetooth Core Specification v5.0 / v5.2</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Bluetooth Special Interest Group (SIG) — Low Energy advertising, beacon telemetry, and proximity sensing.</div>
+            </div>
+          </div>
+
+          <div class="ref-item">
+            <span class="ref-num">[05]</span>
+            <div>
+              <div style="font-weight: 700; color: var(--text-main);">Competency-Based Education & Open Digital Credential Architecture</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">IMS Global Learning Consortium / 1EdTech — Open Badges 2.0 / 3.0 verifiable credential standards.</div>
+            </div>
+          </div>
+
+          <div class="ref-item">
+            <span class="ref-num">[06]</span>
+            <div>
+              <div style="font-weight: 700; color: var(--text-main);">National Skill Development Policy & Vocational Outcome Tracking</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Ministry of Skill Development & Entrepreneurship (MSDE) and NITI Aayog research papers on post-training employment metrics.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 24: TEAM INFORMATION (TEAM SUDO)
+         ====================================================================== -->
+    <section class="section" id="team">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">24 • Project SUDO Team</span>
+          <h2 class="section-title">Team SUDO</h2>
+          <p class="section-desc">
+            Clean technical team grid with structured placeholders for roles and engineering contributions.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Member 1 -->
+          <div class="team-card">
+            <div class="team-avatar">TL</div>
+            <h3 class="team-name">Team Lead</h3>
+            <div class="team-role">Full-Stack Architecture & System Design</div>
+            <p class="team-contrib">
+              Designed end-to-end unified ecosystem architecture, data schemas, and stakeholder interaction models.
+            </p>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="team-card">
+            <div class="team-avatar">HW</div>
+            <h3 class="team-name">IoT Engineer</h3>
+            <div class="team-role">ESP32, BLE & Biometric Integration</div>
+            <p class="team-contrib">
+              Prototyped the ESP32 firmware, BLE beacon transmission, biometric sensor interfacing, and offline flash cache.
+            </p>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="team-card">
+            <div class="team-avatar">LM</div>
+            <h3 class="team-name">LMS Engineer</h3>
+            <div class="team-role">Learning Management & Academic ERP</div>
+            <p class="team-contrib">
+              Engineered modular course delivery modules, batch management workflows, and offline synchronization logic.
+            </p>
+          </div>
+
+          <!-- Member 4 -->
+          <div class="team-card">
+            <div class="team-avatar">AI</div>
+            <h3 class="team-name">AI Engineer</h3>
+            <div class="team-role">Career Guidance & Skill Gap Engine</div>
+            <p class="team-contrib">
+              Developed the AI career recommendation pipeline, competency diagnostic models, and job matching scoring.
+            </p>
+          </div>
+
+          <!-- Member 5 -->
+          <div class="team-card">
+            <div class="team-avatar">UI</div>
+            <h3 class="team-name">Frontend & UX</h3>
+            <div class="team-role">GovTech Interface & Responsive Design</div>
+            <p class="team-contrib">
+              Crafted accessible, high-performance UI components, interactive dashboard mockups, and mobile layouts.
+            </p>
+          </div>
+
+          <!-- Member 6 -->
+          <div class="team-card">
+            <div class="team-avatar">QA</div>
+            <h3 class="team-name">Security & QA</h3>
+            <div class="team-role">Privacy, RBAC & Audit Engineering</div>
+            <p class="team-contrib">
+              Defined role-based access control, cryptographic verification routines, and fallback failure mitigations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="nav-brand" style="margin-bottom: 0.5rem;">
+            <span class="brand-logo-icon">S</span>
+            <span class="brand-name" style="color: #ffffff;">Team SUDO</span>
+          </div>
+          <p class="footer-brand-desc">
+            Smart India Hackathon 2026 Project Proposal.<br>
+            "One Participant. One Complete Record."<br>
+            A unified training, smart presence, skill credentialing, and outcome tracking ecosystem for NCCT and cooperative institutions.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Core Ecosystem</div>
+          <div class="footer-links">
+            <a href="#problem" class="footer-link">Problem Statement</a>
+            <a href="#solution" class="footer-link">Proposed Solution</a>
+            <a href="#journey" class="footer-link">10-Step Journey</a>
+            <a href="#ecosystem" class="footer-link">Stakeholder Groups</a>
+            <a href="#passport" class="footer-link">Skill Passport</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Engineering</div>
+          <div class="footer-links">
+            <a href="#attendance" class="footer-link">Smart Attendance (ESP32)</a>
+            <a href="#offline" class="footer-link">Offline-First Engine</a>
+            <a href="#architecture" class="footer-link">Proposed Architecture</a>
+            <a href="#data-flow" class="footer-link">Data Flow Matrix</a>
+            <a href="#security" class="footer-link">Security & RBAC</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Outcomes & Demos</div>
+          <div class="footer-links">
+            <a href="#certification" class="footer-link">Certificate Verifier</a>
+            <a href="#job-matching" class="footer-link">Job Matching Board</a>
+            <a href="#training-intelligence" class="footer-link">Outcome Loop</a>
+            <a href="#dashboards" class="footer-link">Interactive Dashboards</a>
+            <a href="#risks" class="footer-link">Risks & Mitigation</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Team SUDO • Smart India Hackathon (SIH 2026) Concept Submission.
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <a href="#" class="print-doc-btn" style="color: #cbd5e1; text-decoration: underline;">Print / Export Documentation (PDF)</a>
+          <a href="#topNav" style="color: #cbd5e1;">Back to Top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       QUICK JUMP / SEARCH MODAL (CTRL+K)
+       ======================================================================== -->
+  <div class="modal-overlay" id="searchModal" role="dialog" aria-modal="true" aria-label="Documentation Search">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">
+          Quick Jump / Search Documentation
+        </div>
+        <button id="closeSearchModal" style="color: var(--text-muted); font-size: 1.25rem; font-weight: 700;" aria-label="Close Modal">✕</button>
+      </div>
+
+      <div class="modal-search-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-subtle);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="searchModalInput" class="modal-search-input" placeholder="Search architecture, attendance, passport, risks, dashboards..." autocomplete="off">
+      </div>
+
+      <div class="modal-results-list" id="searchModalResults">
+        <!-- Rendered dynamically via main.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
