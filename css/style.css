@@ -1,11 +1,11 @@
 /* ==========================================================================
-   TEAM SUDO - SIH 2026 DOCUMENTATION PLATFORM
+   NCCT UNIFIED TRAINING PLATFORM
    Design System: GovTech Modern (Deep Blue, Emerald Green, Slate, Crisp White)
    "One Participant. One Complete Record."
    ========================================================================== */
 
 :root {
-  /* Primary Color Palette (Inspired by SIH & NCCT GovTech Theme) */
+  /* Primary Color Palette (NCCT GovTech Theme) */
   --color-primary: #0f3d68;
   --color-primary-dark: #0a2544;
   --color-primary-light: #1b5b98;
@@ -369,7 +369,7 @@ p:last-child {
 }
 
 /* ==========================================================================
-   TOP NOTIFICATION BAR (SIH 2026 OFFICIAL BADGE)
+   TOP NOTIFICATION BAR
    ========================================================================== */
 .top-banner {
   background: linear-gradient(90deg, #0a2544 0%, #0f3d68 50%, #0d8253 100%);
@@ -815,7 +815,7 @@ p:last-child {
   margin-bottom: 2.25rem;
 }
 
-/* SIH Problem Statement Card in Hero */
+/* Problem Statement Card in Hero */
 .ps-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-light);
@@ -2637,7 +2637,7 @@ p:last-child {
 }
 
 /* ==========================================================================
-   FUTURE SCOPE, REFERENCES & TEAM SUDO
+   FUTURE SCOPE, REFERENCES & PROJECT TEAM
    ========================================================================== */
 .future-scope-grid {
   display: grid;

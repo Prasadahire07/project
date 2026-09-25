@@ -1,16 +1,16 @@
 /* ==========================================================================
-   TEAM SUDO - SIH 2026 DOCUMENTATION DATA REPOSITORY
+   NCCT UNIFIED TRAINING PLATFORM DATA REPOSITORY
    All simulation records are explicitly tagged as DEMO DATA.
    ========================================================================== */
 
 const SUDO_DATA = {
   projectMeta: {
-    teamName: "SUDO",
-    hackathon: "Smart India Hackathon 2026",
+    teamName: "NCCT Unified Platform",
+    initiative: "National Cooperative Skilling Initiative",
     theme: "Smart Education / Open Innovation / Governance",
     coreConcept: "One Participant. One Complete Record.",
     subtitle: "Connecting Training, Verified Skills, Certification, Career Guidance and Opportunities in one unified ecosystem.",
-    problemStatementId: "[SIH-2026-XXXX]",
+    problemStatementId: "[NCCT-UTP-2026]",
     problemStatementTitle: "[Unified Digital Tracking & Outcome Platform for Cooperative & Skill Training]",
     stakeholderCentralLayer: "National Council for Cooperative Training (NCCT), Ministry of Cooperation"
   },
@@ -102,7 +102,7 @@ const SUDO_DATA = {
       why: "Paper certificates are easily forged, lost, and require tedious manual verification phone calls or letters.",
       how: "Upon passing course criteria, system generates PDF certificate with embedded SHA-256 hash and unique ID registered in NCCT central database.",
       who: "NCCT Certifying Authority, Institute Director, and Graduating Trainee.",
-      dataGenerated: "Unique Certificate ID (e.g. SUDO-DEMO-2026-001), Issue Timestamp, Issuing Officer Digital Signature, QR Payload.",
+      dataGenerated: "Unique Certificate ID (e.g. NCCT-DEMO-2026-001), Issue Timestamp, Issuing Officer Digital Signature, QR Payload.",
       benefit: "Instant, zero-cost third-party verification for employers in under two seconds.",
       risks: "QR tampering; mitigated by server-side public signature verification against the central NCCT registry.",
       scaling: "Automated generation pipeline capable of issuing millions of credentials without administrative bottlenecks."
@@ -171,8 +171,8 @@ const SUDO_DATA = {
 
   // Demo Certificates for the Interactive Verification Tool
   demoCertificates: {
-    "SUDO-DEMO-2026-001": {
-      id: "SUDO-DEMO-2026-001",
+    "NCCT-DEMO-2026-001": {
+      id: "NCCT-DEMO-2026-001",
       candidateName: "Aarav Sharma",
       programme: "Diploma in Cooperative Banking & Digital Finance",
       batch: "RICM-BLR-2026-B1",
@@ -186,8 +186,8 @@ const SUDO_DATA = {
       hash: "8f4a9b2c1d3e5f7a0b2c4e6f8a1c3e5d7b9a0c2e4f6a8b1c3d5e7f9a0b2c4e6f",
       verificationMethod: "Hardware-backed Cryptographic Proof + Central NCCT Ledger"
     },
-    "SUDO-DEMO-2026-002": {
-      id: "SUDO-DEMO-2026-002",
+    "NCCT-DEMO-2026-002": {
+      id: "NCCT-DEMO-2026-002",
       candidateName: "Priya Patel",
       programme: "Certificate in Rural Dairy Cooperative Supply Chain & Logistics",
       batch: "ICM-GND-2026-D4",
@@ -201,8 +201,8 @@ const SUDO_DATA = {
       hash: "3b7c9e1f5a2d8e0c4f6a8b1d3e5c7a9b0d2f4e6a8c1b3d5f7e9a0c2d4f6b8a1c",
       verificationMethod: "Hardware-backed Cryptographic Proof + Central NCCT Ledger"
     },
-    "SUDO-DEMO-2026-003": {
-      id: "SUDO-DEMO-2026-003",
+    "NCCT-DEMO-2026-003": {
+      id: "NCCT-DEMO-2026-003",
       candidateName: "Rohit Verma",
       programme: "Executive Training in Cooperative Law & Governance",
       batch: "ICM-LKO-2026-L2",
@@ -332,7 +332,7 @@ const SUDO_DATA = {
       recentActivity: [
         { event: "ESP32 Verified Attendance logged for 'Advanced Financial Inclusion'", time: "Today, 09:14 AM" },
         { event: "Passed Summative Assessment: 'Credit Risk Analysis' with 91%", time: "Yesterday, 04:30 PM" },
-        { event: "Received Verified Certificate SUDO-DEMO-2026-001 from NCCT", time: "3 days ago" },
+        { event: "Received Verified Certificate NCCT-DEMO-2026-001 from NCCT", time: "3 days ago" },
         { event: "AI Recommendation: Enrol in 'Agricultural Commodity Trading' to unlock 4 more openings", time: "5 days ago" }
       ]
     },
@@ -451,9 +451,9 @@ const SUDO_DATA = {
   // Structured Academic & Technical Bibliography Framework (No Invented URLs)
   references: [
     {
-      category: "Hackathon Guidelines",
-      title: "Smart India Hackathon 2026 Official Operational Guidelines",
-      citation: "Ministry of Education’s Innovation Cell (MIC), AICTE, Government of India (2026)."
+      category: "National Guidelines",
+      title: "National Council for Cooperative Training Operational Guidelines",
+      citation: "Ministry of Cooperation, Government of India (2026)."
     },
     {
       category: "Cooperative Training & Governance",
@@ -482,7 +482,7 @@ const SUDO_DATA = {
     }
   ],
 
-  // Team SUDO Members Placeholder Structure
+  // Engineering & Core Project Team Structure
   teamMembers: [
     {
       name: "Team Lead & System Architect",

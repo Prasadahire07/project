@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TEAM SUDO - SIH 2026 DOCUMENTATION PLATFORM
+   NCCT UNIFIED TRAINING PLATFORM
    Client-Side Interactive Logic & State Management
    Zero External Dependencies • Pure ES6+ Modern Architecture
    ========================================================================== */
@@ -314,7 +314,7 @@ function performVerification(certId) {
   if (!certId) {
     resultBox.innerHTML = `
       <div style="color: var(--color-accent-amber); font-weight: 600; padding: 1rem; text-align: center;">
-        Please enter a Certificate ID (e.g., SUDO-DEMO-2026-001) or click a demo sample above.
+        Please enter a Certificate ID (e.g., NCCT-DEMO-2026-001) or click a demo sample above.
       </div>
     `;
     resultBox.classList.add('active');
@@ -387,7 +387,7 @@ function performVerification(certId) {
         Certificate ID Not Found
       </div>
       <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.5rem;">
-        The identifier <strong>"${certId}"</strong> is not recognized in the demo registry. Please try clicking one of the sample chips above: <code>SUDO-DEMO-2026-001</code>, <code>SUDO-DEMO-2026-002</code>, or <code>SUDO-DEMO-2026-003</code>.
+        The identifier <strong>"${certId}"</strong> is not recognized in the demo registry. Please try clicking one of the sample chips above: <code>NCCT-DEMO-2026-001</code>, <code>NCCT-DEMO-2026-002</code>, or <code>NCCT-DEMO-2026-003</code>.
       </p>
     `;
   }
@@ -521,9 +521,9 @@ const SEARCH_INDEX = [
   { title: "Risks & Mitigation Matrix", hash: "#risks", meta: "5 explicit risks from PPT and engineering mitigations" },
   { title: "Impact & 4 Benefit Categories", hash: "#impact", meta: "Social, Economic, Operational, Educational benefits" },
   { title: "Interactive Dashboards (Demo)", hash: "#dashboards", meta: "5 switchable mock dashboards for all stakeholders" },
-  { title: "Future Scope & Roadmap", hash: "#future-scope", meta: "Post-hackathon expansion, voice AI, national integrations" },
+  { title: "Future Scope & Roadmap", hash: "#future-scope", meta: "Future nationwide expansion, voice AI, national integrations" },
   { title: "Research & References", hash: "#references", meta: "Grounded academic & technical documentation framework" },
-  { title: "Team SUDO Information", hash: "#team", meta: "Team members, roles, and engineering contributions" }
+  { title: "Project Team Information", hash: "#team", meta: "Team members, roles, and engineering contributions" }
 ];
 
 function initQuickSearchModal() {
