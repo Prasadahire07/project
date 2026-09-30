@@ -1,20 +1,21 @@
 /* ==========================================================================
    AI & LMS - ENABLED COOPERATIVE CAPACITY BUILDING, ERP & EMPLOYMENT ECOSYSTEM
-   Team Name: Sudo_Core | Team ID: 190037 | Problem Statement ID: SIH1608
+   Team Name: Sudo_Core | Team ID: 180037 | Problem Statement ID: SIH26087
    Theme: Smart Education | Category: Hardware
-   Smart India Hackathon 2024 / 2026 Showcase
+   Smart India Hackathon 2026 Showcase
    All simulation records are explicitly tagged as DEMO DATA.
    ========================================================================== */
 
 const SUDO_DATA = {
   projectMeta: {
-    problemStatementId: "SIH1608",
+    problemStatementId: "SIH26087",
     problemStatementTitle: "AI & LMS - Enabled Cooperative Capacity Building, ERP & Employment Ecosystem",
     teamName: "Sudo_Core",
-    teamId: "190037",
+    teamId: "180037",
     theme: "Smart Education",
     psCategory: "Hardware",
-    coreConcept: "One Participant. One Complete Record.",
+    github: "https://github.com/SiddhuuX/SIH26087",
+    coreConcept: "One Learner, One Digital Record",
     subtitle: "Connecting Training, Verified Skills, Certification, Career Guidance and Livelihood Opportunities in one unified, offline-resilient ecosystem.",
     initiative: "National Cooperative Skilling & Capacity Building Initiative",
     stakeholderCentralLayer: "National Council for Cooperative Training (NCCT), Ministry of Cooperation, Govt. of India"
@@ -490,7 +491,7 @@ const SUDO_DATA = {
       slideNumber: "01 / 10",
       tag: "Title & Executive Summary",
       title: "AI & LMS-Enabled Cooperative Capacity Building, ERP & Employment Ecosystem",
-      subtitle: "Team Sudo_Core • Team ID: 190037 • Problem Statement ID: SIH1608 • Theme: Smart Education / Hardware",
+      subtitle: "Team Sudo_Core • Team ID: 180037 • Problem Statement ID: SIH26087 • Theme: Smart Education / Hardware",
       bullets: [
         "Core Philosophy: 'One Participant. One Complete Record.'",
         "Primary Stakeholder: National Council for Cooperative Training (NCCT), Ministry of Cooperation, Govt. of India.",
@@ -625,7 +626,7 @@ const SUDO_DATA = {
       bullets: [
         "Measurable Impact: 90% faster administrative overhead, 100% audit-proof attendance, 3x faster hiring for rural youth.",
         "Strategic Roadmap: Phase 1 Prototype -> Phase 2 Pilot Rollout -> Phase 3 National Credential Integration -> Phase 4 Pan-India Grid.",
-        "Team Sudo_Core (Team ID: 190037): Led by dedicated engineers across System Architecture, Embedded IoT, LMS, AI, Frontend, and Security.",
+        "Team Sudo_Core (Team ID: 180037): Led by dedicated engineers across System Architecture, Embedded IoT, LMS, AI, Frontend, and Security.",
         "Conclusion: A unified, production-ready GovTech blueprint ready to scale across NCCT and the Ministry of Cooperation."
       ],
       diagram: "TEAM_CREDITS"
@@ -945,12 +946,12 @@ const SUDO_DATA = {
     }
   ],
 
-  // Team Sudo_Core (Team ID: 190037)
+  // Team Sudo_Core (Team ID: 180037)
   teamMembers: [
     {
       name: "Team Lead & System Architect",
       team: "Sudo_Core",
-      teamId: "190037",
+      teamId: "180037",
       role: "Full-Stack Architecture & System Design",
       initials: "TL",
       accent: "yellow",
@@ -959,7 +960,7 @@ const SUDO_DATA = {
     {
       name: "IoT & Embedded Hardware Engineer",
       team: "Sudo_Core",
-      teamId: "190037",
+      teamId: "180037",
       role: "ESP32, BLE & Biometric Integration",
       initials: "HW",
       accent: "orange",
@@ -968,7 +969,7 @@ const SUDO_DATA = {
     {
       name: "LMS & Data Platform Engineer",
       team: "Sudo_Core",
-      teamId: "190037",
+      teamId: "180037",
       role: "Learning Management & Academic ERP",
       initials: "LM",
       accent: "pink",
@@ -977,7 +978,7 @@ const SUDO_DATA = {
     {
       name: "AI & Intelligence Engineer",
       team: "Sudo_Core",
-      teamId: "190037",
+      teamId: "180037",
       role: "Career Guidance & Skill Gap Engine",
       initials: "AI",
       accent: "purple",
@@ -986,7 +987,7 @@ const SUDO_DATA = {
     {
       name: "Frontend & UX Engineer",
       team: "Sudo_Core",
-      teamId: "190037",
+      teamId: "180037",
       role: "GovTech Interface & Responsive Design",
       initials: "UI",
       accent: "blue",
@@ -995,7 +996,7 @@ const SUDO_DATA = {
     {
       name: "Security & QA Specialist",
       team: "Sudo_Core",
-      teamId: "190037",
+      teamId: "180037",
       role: "Privacy, RBAC & Audit Engineering",
       initials: "QA",
       accent: "green",
