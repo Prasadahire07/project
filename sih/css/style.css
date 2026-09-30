@@ -126,12 +126,17 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + 20px);
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
   background-color: var(--bg-page);
   padding-bottom: 90px; /* space for bottom control dock */
 }
@@ -552,11 +557,9 @@ ul, ol {
 }
 
 .highlight-ink {
-  background: linear-gradient(120deg, var(--color-yellow) 0%, var(--color-yellow) 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 35%;
-  background-position: 0 88%;
-  padding: 0 0.2rem;
+  background: none;
+  padding: 0;
+  color: inherit;
 }
 
 .hero-tagline-box {
@@ -1344,11 +1347,13 @@ ul, ol {
 
 .arch-connector-line {
   text-align: center;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-pink);
+  word-break: break-word;
+  line-height: 1.4;
 }
 
 .arch-dual-grid {
@@ -2647,6 +2652,10 @@ ul, ol {
     padding-bottom: 110px;
   }
 
+  .container {
+    padding: 0 1rem;
+  }
+
   /* Prevent navbar crowding on mobile: hide desktop executive mode text button */
   .navbar .launch-pres-btn {
     display: none;
@@ -2780,6 +2789,29 @@ ul, ol {
 
 /* 4. Small Mobile Portrait (max-width: 480px) */
 @media (max-width: 480px) {
+  .container {
+    padding: 0 0.85rem;
+  }
+
+  .card-inner {
+    padding: 1.15rem;
+  }
+
+  .folder-tab {
+    margin-left: 0.75rem;
+    max-width: calc(100% - 1.5rem);
+    font-size: 0.68rem;
+    padding: 0.28rem 0.65rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.4rem, 6vw, 1.85rem);
+  }
+
+  .hero-tagline-box {
+    padding: 0.85rem 1rem;
+  }
+
   .brand-sub {
     display: none;
   }
@@ -2981,8 +3013,13 @@ ul, ol {
     font-size: 1rem;
   }
 
+  .container {
+    padding: 0 0.65rem;
+  }
+
+  .hero-headline,
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 1.45rem;
   }
 
   .btn {
