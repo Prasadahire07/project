@@ -362,7 +362,7 @@ function renderDashboard(role) {
             <span>National Federated Training Radar (14 RICMs &amp; 19 ICMs)</span>
             <span class="badge badge-sm badge-pink">Ministry of Cooperation</span>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+          <div class="admin-regional-grid">
             ${data.regionalBreakdown.map(reg => `
               <div style="background: var(--bg-surface-cream); border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem;">
                 <div style="font-weight: 800; font-size: 0.9rem; margin-bottom: 0.35rem;">${reg.region}</div>
@@ -575,7 +575,7 @@ function initTeam() {
         <div class="team-avatar bg-${m.accent || 'yellow'}">${m.initials}</div>
         <h3 class="team-name">${m.name}</h3>
         <div class="team-role">${m.role}</div>
-        <span class="badge badge-sm badge-outline" style="margin-bottom: 0.75rem;">${m.team} • ID: ${m.teamId}</span>
+        <span class="badge badge-sm badge-outline" style="margin-bottom: 0.75rem;">${m.team}</span>
         <p class="team-contrib">${m.contribution}</p>
       </div>
     </div>
@@ -762,7 +762,7 @@ function initQuickSearchModal() {
     { title: "08 Security & Fraud Prevention", desc: "Hardware multi-check, zero-knowledge minutiae, RBAC", anchor: "#security" },
     { title: "09 Measurable Benefits", desc: "Operational efficiency, audit integrity & 4 quadrants", anchor: "#benefits" },
     { title: "10 Strategic Roadmap", desc: "Phased rollout: Phase 1 to Phase 4 Pan-India grid", anchor: "#future-scope" },
-    { title: "11 Project Team", desc: "Team Core Architecture (Team ID: 2026)", anchor: "#team" }
+    { title: "11 Ecosystem Architecture Team", desc: "Platform Engineering, Hardware & AI Divisions", anchor: "#team" }
   ];
 
   function openSearch() {

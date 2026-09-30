@@ -17,8 +17,8 @@ const SUDO_DATA = {
     initiative: "National Cooperative Skilling & Capacity Building Initiative",
     stakeholderCentralLayer: "National Council for Cooperative Training (NCCT), Ministry of Cooperation, Govt. of India"
   },
-
-  // journeySteps: [
+  // 10 Core Participant Journey Steps
+  journeySteps: [
     {
       id: 1,
       num: "01",
@@ -480,7 +480,7 @@ const SUDO_DATA = {
     }
   ],
 
-  // Presentation Mode: 10 Curated Evaluation Slides for Platform Judges
+  // Presentation Mode: 10 Curated Platform Architecture Slides
   presentationSlides: [
     {
       id: 1,
@@ -942,21 +942,19 @@ const SUDO_DATA = {
     }
   ],
 
-  // Team Engineering Division (Team ID: 2026)
+  // Core Platform Engineering Division
   teamMembers: [
     {
-      name: "Team Lead & System Architect",
-      team: "Engineering Division",
-      teamId: "2026",
+      name: "Lead System Architect",
+      team: "Platform Engineering",
       role: "Full-Stack Architecture & System Design",
-      initials: "TL",
+      initials: "SA",
       accent: "yellow",
       contribution: "Designed end-to-end unified ecosystem architecture, data schemas, API gateways, and stakeholder interaction models."
     },
     {
       name: "IoT & Embedded Hardware Engineer",
-      team: "Engineering Division",
-      teamId: "2026",
+      team: "Embedded Systems",
       role: "ESP32, BLE & Biometric Integration",
       initials: "HW",
       accent: "orange",
@@ -964,8 +962,7 @@ const SUDO_DATA = {
     },
     {
       name: "LMS & Data Platform Engineer",
-      team: "Engineering Division",
-      teamId: "2026",
+      team: "Cloud & Data Systems",
       role: "Learning Management & Academic ERP",
       initials: "LM",
       accent: "pink",
@@ -973,8 +970,7 @@ const SUDO_DATA = {
     },
     {
       name: "AI & Intelligence Engineer",
-      team: "Engineering Division",
-      teamId: "2026",
+      team: "Machine Learning & AI",
       role: "Career Guidance & Skill Gap Engine",
       initials: "AI",
       accent: "purple",
@@ -982,8 +978,7 @@ const SUDO_DATA = {
     },
     {
       name: "Frontend & UX Engineer",
-      team: "Engineering Division",
-      teamId: "2026",
+      team: "Interface Design",
       role: "GovTech Interface & Responsive Design",
       initials: "UI",
       accent: "blue",
@@ -991,8 +986,7 @@ const SUDO_DATA = {
     },
     {
       name: "Security & QA Specialist",
-      team: "Engineering Division",
-      teamId: "2026",
+      team: "Cybersecurity & Audit",
       role: "Privacy, RBAC & Audit Engineering",
       initials: "QA",
       accent: "green",

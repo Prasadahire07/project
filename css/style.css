@@ -230,6 +230,10 @@ ul, ol {
   position: relative;
   z-index: 2;
   box-shadow: 2px -2px 0px var(--shadow-color);
+  max-width: calc(100% - 2.5rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .folder-tab.tab-yellow { background: var(--color-yellow); color: #141416; }
@@ -541,8 +545,8 @@ ul, ol {
 }
 
 .hero-headline {
-  font-size: 2.75rem;
-  line-height: 1.15;
+  font-size: clamp(1.85rem, 5vw, 2.75rem);
+  line-height: 1.18;
   letter-spacing: -0.03em;
   margin-bottom: 1.25rem;
 }
@@ -784,7 +788,7 @@ ul, ol {
 }
 
 .section-heading {
-  font-size: 2.25rem;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
   letter-spacing: -0.02em;
   margin-bottom: 0.85rem;
 }
@@ -1567,6 +1571,12 @@ ul, ol {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.admin-regional-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
 
 /* Certificate Verifier Sub-Tool */
@@ -2525,11 +2535,15 @@ ul, ol {
 }
 
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS
+   COMPREHENSIVE RESPONSIVE BREAKPOINTS & ACCESSIBILITY
+   Supporting Desktop, Laptop, Tablet, Mobile Landscape & Mobile Portrait
    ========================================================================== */
+
+/* 1. Laptop & Large Tablet (max-width: 1100px) */
 @media (max-width: 1100px) {
   .hero-layout {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .pillars-grid {
@@ -2569,33 +2583,149 @@ ul, ol {
   }
 }
 
-@media (max-width: 768px) {
-  .hero-headline {
-    font-size: 2rem;
-  }
-
-  .section-heading {
-    font-size: 1.85rem;
-  }
-
+/* 2. Tablet Portrait (max-width: 900px) */
+@media (max-width: 900px) {
   .workflow-interactive-wrap {
     grid-template-columns: 1fr;
+  }
+
+  .inspector-card {
+    position: static;
+  }
+
+  .inspector-matrix {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-regional-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .dash-content-grid {
     grid-template-columns: 1fr;
   }
 
-  .dash-kpi-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-3-cards, .grid-4-cards, .pillars-grid, .tech-stack-grid, .benefits-metric-grid, .team-cards-grid {
+  .arch-dual-grid {
     grid-template-columns: 1fr;
   }
 
   .verifier-layout {
     grid-template-columns: 1fr;
+  }
+
+  .presentation-modal {
+    padding: 0.75rem;
+  }
+
+  .pres-window {
+    max-height: 96vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .pres-stage {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    min-height: auto;
+  }
+
+  .pres-slide-visual {
+    display: none;
+  }
+
+  .pres-bottom-bar {
+    padding: 0.75rem 1rem;
+  }
+
+  .pres-dots {
+    display: none;
+  }
+}
+
+/* 3. Mobile Landscape & Standard Smartphones (max-width: 768px) */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 110px;
+  }
+
+  /* Prevent navbar crowding on mobile: hide desktop executive mode text button */
+  .navbar .launch-pres-btn {
+    display: none;
+  }
+
+  .pres-top-title {
+    display: none;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-title-wrap {
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-section {
+    padding: 2rem 0;
+  }
+
+  .wf-step-item {
+    padding: 0.75rem 0.95rem;
+  }
+
+  /* Comparison Flow Stacked for Maximum Mobile Readability */
+  .comparison-header {
+    display: none;
+  }
+
+  .comparison-row {
+    grid-template-columns: 1fr;
+    padding: 0.85rem;
+    gap: 0.65rem;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  .fail-cell {
+    border-right: none;
+    background: var(--color-orange-light);
+    border-radius: var(--radius-sm);
+    border: var(--border-thin);
+    padding: 0.75rem;
+  }
+
+  .win-cell {
+    background: var(--color-green-light);
+    border-radius: var(--radius-sm);
+    border: var(--border-thin);
+    padding: 0.75rem;
+  }
+
+  /* Dashboard Adjustments */
+  .dash-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .dashboard-canvas {
+    padding: 1.25rem;
+  }
+
+  .dash-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  /* Grids to 1 column */
+  .grid-3-cards, 
+  .grid-4-cards, 
+  .pillars-grid, 
+  .tech-stack-grid, 
+  .benefits-metric-grid, 
+  .team-cards-grid, 
+  .quadrant-grid, 
+  .roadmap-timeline {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 
   .meta-strip-card {
@@ -2606,20 +2736,262 @@ ul, ol {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .pres-stage {
-    grid-template-columns: 1fr;
+  .arch-nodes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Floating Dock Mobile Optimization */
+  .floating-control-dock {
+    width: calc(100% - 1.5rem);
+    bottom: 0.75rem;
+  }
+
+  .dock-container {
+    padding: 0.55rem 0.85rem;
   }
 
   .dock-title-text {
     display: none;
   }
 
+  .dock-action-pill {
+    display: none;
+  }
+
   .footer-layout {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .top-banner-inner {
     flex-direction: column;
     text-align: center;
+    gap: 0.5rem;
+  }
+
+  .top-banner-tags {
+    justify-content: center;
+  }
+
+  .top-banner-actions {
+    display: none;
   }
 }
+
+/* 4. Small Mobile Portrait (max-width: 480px) */
+@media (max-width: 480px) {
+  .brand-sub {
+    display: none;
+  }
+
+  .nav-actions {
+    gap: 0.35rem;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.65rem;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .hero-preview-card .card-inner {
+    padding: 0.85rem;
+  }
+
+  .loop-node {
+    padding: 0.55rem 0.7rem;
+  }
+
+  .loop-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+  }
+
+  .loop-node .badge {
+    display: none;
+  }
+
+  .wf-step-item .badge {
+    display: none;
+  }
+
+  .meta-strip-card {
+    grid-template-columns: 1fr;
+    padding: 0.75rem;
+  }
+
+  .tagline-quote {
+    display: none;
+  }
+
+  .tagline-text, .tagline-sub {
+    margin-left: 0;
+  }
+
+  .equation-banner {
+    padding: 1.25rem 1rem;
+  }
+
+  .equation-formula {
+    gap: 0.35rem;
+  }
+
+  .eq-pill {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .eq-op {
+    font-size: 1rem;
+  }
+
+  .arch-nodes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .arch-canvas {
+    padding: 1rem 0.75rem;
+  }
+
+  .dataflow-steps-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dataflow-interactive-wrap {
+    padding: 1.25rem 0.85rem;
+  }
+
+  .df-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .df-packet-box {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  .dash-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-regional-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inspector-matrix {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .role-tab-btn {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .cert-input-row {
+    flex-direction: column;
+  }
+
+  .dock-left {
+    display: none;
+  }
+
+  .dock-container {
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .dock-play-btn span {
+    display: none;
+  }
+
+  .dock-play-btn {
+    padding: 0.55rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    justify-content: center;
+  }
+
+  .modal-dialog {
+    margin: 0 0.5rem;
+    padding: 1.2rem;
+  }
+
+  .modal-overlay {
+    padding-top: 5vh;
+  }
+
+  .top-banner-tags .badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .pres-headline {
+    font-size: 1.25rem;
+  }
+
+  .pres-subheadline {
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .pres-stage {
+    padding: 1rem 0.75rem;
+  }
+
+  .pres-bullets-box {
+    padding: 0.85rem;
+  }
+
+  .pres-bullets-list li {
+    font-size: 0.82rem;
+  }
+}
+
+/* 5. Extra Small Smartphones (max-width: 360px) */
+@media (max-width: 360px) {
+  .nav-brand {
+    gap: 0.4rem;
+  }
+
+  .brand-badge {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+
+  .brand-name {
+    font-size: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .btn {
+    padding: 0.6rem 0.95rem;
+    font-size: 0.82rem;
+  }
+
+  .dock-container {
+    padding: 0.45rem 0.65rem;
+  }
+}
+
