@@ -1,650 +1,821 @@
 /* ==========================================================================
-   NCCT UNIFIED TRAINING PLATFORM
-   Client-Side Interactive Logic & State Management
-   Zero External Dependencies • Pure ES6+ Modern Architecture
+   TEAM SUDO_CORE • SIH1608 • NCCT UNIFIED ECOSYSTEM
+   Client-Side Interactive Logic & Presentation State Management
+   Zero External Dependencies • Pure Modern ES6+ Architecture
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
-  initEditableMeta();
-  initJourneyStepper();
-  initStakeholderTabs();
-  initCertificateVerifier();
-  initSkillPassport();
-  initDashboards();
-  initQuickSearchModal();
   initMobileNav();
-  initPrintHandler();
+  initWorkflowStepper();
+  initTechStack();
+  initDashboards();
+  initCertificateVerifier();
+  initDataFlow();
+  initBenefits();
+  initRoadmap();
+  initTeam();
+  initPresentationMode();
+  initBottomDock();
+  initQuickSearchModal();
 });
 
 /* --------------------------------------------------------------------------
-   THEME TOGGLING WITH SMOOTH ANIMATION & TRANSITIONS
+   01. THEME SWITCHER WITH LOCALSTORAGE & SYSTEM ADAPTATION
    -------------------------------------------------------------------------- */
 function initTheme() {
   const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const drawerThemeToggleBtn = document.getElementById('drawerThemeToggleBtn');
   const storedTheme = localStorage.getItem('sudo_theme') || 'light';
 
   document.documentElement.setAttribute('data-theme', storedTheme);
   updateThemeIcon(storedTheme);
 
-  function switchTheme(triggerElement) {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-    // 1. Icon Rotation Animation
-    const allThemeIcons = document.querySelectorAll('#themeIcon, #drawerThemeIcon');
-    allThemeIcons.forEach(icon => {
-      icon.classList.add('rotate-anim');
-      setTimeout(() => icon.classList.remove('rotate-anim'), 450);
-    });
-
-    // 2. View Transitions API (Circular Ripple Reveal) if supported
-    if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && triggerElement) {
-      const rect = triggerElement.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
-      const endRadius = Math.hypot(
-        Math.max(x, window.innerWidth - x),
-        Math.max(y, window.innerHeight - y)
-      );
-
-      const transition = document.startViewTransition(() => {
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('sudo_theme', newTheme);
-        updateThemeIcon(newTheme);
-      });
-
-      transition.ready.then(() => {
-        document.documentElement.animate(
-          {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${endRadius}px at ${x}px ${y}px)`
-            ]
-          },
-          {
-            duration: 480,
-            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-            pseudoElement: '::view-transition-new(root)'
-          }
-        );
-      });
-    } else {
-      // 3. Smooth CSS Fallback Transition
-      document.documentElement.classList.add('theme-transitioning');
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('sudo_theme', newTheme);
       updateThemeIcon(newTheme);
-
-      setTimeout(() => {
-        document.documentElement.classList.remove('theme-transitioning');
-      }, 500);
-    }
-  }
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => switchTheme(themeToggleBtn));
-  }
-
-  if (drawerThemeToggleBtn) {
-    drawerThemeToggleBtn.addEventListener('click', () => switchTheme(drawerThemeToggleBtn));
+    });
   }
 }
 
 function updateThemeIcon(theme) {
-  const icons = document.querySelectorAll('#themeIcon, #drawerThemeIcon');
-  icons.forEach(themeIcon => {
-    if (!themeIcon) return;
-    if (theme === 'dark') {
-      themeIcon.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
-      if (themeIcon.parentElement) themeIcon.parentElement.setAttribute('title', 'Switch to Light Mode');
-    } else {
-      themeIcon.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
-      if (themeIcon.parentElement) themeIcon.parentElement.setAttribute('title', 'Switch to Dark Mode');
-    }
-  });
-}
+  const iconSpan = document.getElementById('themeIcon');
+  if (!iconSpan) return;
 
-/* --------------------------------------------------------------------------
-   EDITABLE PROBLEM STATEMENT METADATA
-   Grounded in PPT rule: Blank fields for PS ID & Title remain customizable
-   -------------------------------------------------------------------------- */
-function initEditableMeta() {
-  const editableFields = document.querySelectorAll('[data-editable-id]');
-  editableFields.forEach(field => {
-    const key = field.getAttribute('data-editable-id');
-    const saved = localStorage.getItem(`sudo_meta_${key}`);
-    if (saved) {
-      field.textContent = saved;
-    }
-
-    field.addEventListener('blur', () => {
-      localStorage.setItem(`sudo_meta_${key}`, field.textContent.trim());
-    });
-
-    field.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        field.blur();
-      }
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   PARTICIPANT JOURNEY (10-STEP INTERACTIVE STEPPER)
-   -------------------------------------------------------------------------- */
-let currentJourneyStep = 1;
-
-function initJourneyStepper() {
-  const stepperContainer = document.getElementById('journeyStepperNav');
-  if (!stepperContainer) return;
-
-  // Render stepper buttons
-  stepperContainer.innerHTML = SUDO_DATA.journeySteps.map(step => `
-    <button class="journey-step-btn ${step.id === 1 ? 'active' : ''}" data-step-id="${step.id}" id="step-btn-${step.id}">
-      <span class="step-badge-num">${step.num}</span>
-      <div class="step-info">
-        <span class="step-name">${step.name}</span>
-        <span class="step-sub">${step.short}</span>
-      </div>
-    </button>
-  `).join('');
-
-  // Attach click listener
-  stepperContainer.querySelectorAll('.journey-step-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const stepId = parseInt(btn.getAttribute('data-step-id'));
-      renderJourneyDetail(stepId);
-    });
-  });
-
-  // Next / Prev controls
-  const nextBtn = document.getElementById('journeyNextBtn');
-  const prevBtn = document.getElementById('journeyPrevBtn');
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      const nextId = currentJourneyStep < 10 ? currentJourneyStep + 1 : 1;
-      renderJourneyDetail(nextId);
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      const prevId = currentJourneyStep > 1 ? currentJourneyStep - 1 : 10;
-      renderJourneyDetail(prevId);
-    });
-  }
-
-  // Initial render
-  renderJourneyDetail(1);
-}
-
-function renderJourneyDetail(stepId) {
-  currentJourneyStep = stepId;
-  const step = SUDO_DATA.journeySteps.find(s => s.id === stepId);
-  if (!step) return;
-
-  // Update active state in stepper nav
-  document.querySelectorAll('.journey-step-btn').forEach(b => b.classList.remove('active'));
-  const activeBtn = document.getElementById(`step-btn-${stepId}`);
-  if (activeBtn) activeBtn.classList.add('active');
-
-  const panel = document.getElementById('journeyDetailPanel');
-  if (!panel) return;
-
-  panel.innerHTML = `
-    <div class="journey-detail-header">
-      <div class="journey-detail-title">
-        <span class="badge badge-primary">Step ${step.num} of 10</span>
-        <span>${step.name}</span>
-      </div>
-      <span class="journey-step-tag">${step.short}</span>
-    </div>
-
-    <p style="font-size: 1.05rem; color: var(--text-main); font-weight: 500; margin-bottom: 1.5rem;">
-      ${step.what}
-    </p>
-
-    <div class="deepdive-grid">
-      <div class="deepdive-item">
-        <div class="deepdive-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-          Why It Exists
-        </div>
-        <div class="deepdive-content">${step.why}</div>
-      </div>
-
-      <div class="deepdive-item">
-        <div class="deepdive-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-          How It Works
-        </div>
-        <div class="deepdive-content">${step.how}</div>
-      </div>
-
-      <div class="deepdive-item">
-        <div class="deepdive-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-          Who Uses It
-        </div>
-        <div class="deepdive-content">${step.who}</div>
-      </div>
-
-      <div class="deepdive-item">
-        <div class="deepdive-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-          Data Generated
-        </div>
-        <div class="deepdive-content mono" style="font-size: 0.8rem;">${step.dataGenerated}</div>
-      </div>
-
-      <div class="deepdive-item">
-        <div class="deepdive-label" style="color: var(--color-secondary);">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          Primary Benefit
-        </div>
-        <div class="deepdive-content">${step.benefit}</div>
-      </div>
-
-      <div class="deepdive-item">
-        <div class="deepdive-label" style="color: var(--color-accent-amber);">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-          Risks & Safeguards
-        </div>
-        <div class="deepdive-content">${step.risks}</div>
-      </div>
-    </div>
-  `;
-}
-
-/* --------------------------------------------------------------------------
-   STAKEHOLDER ECOSYSTEM TABS
-   -------------------------------------------------------------------------- */
-function initStakeholderTabs() {
-  const tabs = document.querySelectorAll('.stakeholder-tab-btn');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetId = tab.getAttribute('data-tab');
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      document.querySelectorAll('.stakeholder-pane').forEach(pane => {
-        pane.classList.remove('active');
-      });
-      const activePane = document.getElementById(`pane-${targetId}`);
-      if (activePane) activePane.classList.add('active');
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   CERTIFICATE VERIFICATION SIMULATOR (INTERACTIVE TOOL)
-   -------------------------------------------------------------------------- */
-function initCertificateVerifier() {
-  const input = document.getElementById('certInput');
-  const verifyBtn = document.getElementById('verifyBtn');
-  const resultBox = document.getElementById('certResultBox');
-  const presetChips = document.querySelectorAll('.preset-chip');
-
-  if (!input || !verifyBtn || !resultBox) return;
-
-  presetChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      input.value = chip.getAttribute('data-cert-id');
-      performVerification(input.value.trim());
-    });
-  });
-
-  verifyBtn.addEventListener('click', () => {
-    performVerification(input.value.trim());
-  });
-
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      performVerification(input.value.trim());
-    }
-  });
-}
-
-function performVerification(certId) {
-  const resultBox = document.getElementById('certResultBox');
-  if (!certId) {
-    resultBox.innerHTML = `
-      <div style="color: var(--color-accent-amber); font-weight: 600; padding: 1rem; text-align: center;">
-        Please enter a Certificate ID (e.g., NCCT-DEMO-2026-001) or click a demo sample above.
-      </div>
-    `;
-    resultBox.classList.add('active');
-    return;
-  }
-
-  // Simulated Verification Logic against Demo Dataset
-  const cert = SUDO_DATA.demoCertificates[certId];
-
-  if (cert) {
-    resultBox.innerHTML = `
-      <div class="result-status-badge verified">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        ${cert.status} (NCCT Central Ledger Match)
-      </div>
-
-      <div style="margin-bottom: 1.25rem;">
-        <h4 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.25rem;">
-          ${cert.candidateName}
-        </h4>
-        <div style="color: var(--color-primary); font-weight: 600; font-size: 0.95rem;">
-          ${cert.programme}
-        </div>
-      </div>
-
-      <div class="cert-meta-grid">
-        <div class="cert-meta-item">
-          <span class="cert-meta-label">Certificate ID</span>
-          <span class="cert-meta-value mono">${cert.id}</span>
-        </div>
-        <div class="cert-meta-item">
-          <span class="cert-meta-label">Issuing Institute</span>
-          <span class="cert-meta-value">${cert.institute}</span>
-        </div>
-        <div class="cert-meta-item">
-          <span class="cert-meta-label">Award Date</span>
-          <span class="cert-meta-value">${cert.issueDate}</span>
-        </div>
-        <div class="cert-meta-item">
-          <span class="cert-meta-label">Evaluation Grade</span>
-          <span class="cert-meta-value" style="color: var(--color-secondary); font-weight: 700;">${cert.grade}</span>
-        </div>
-        <div class="cert-meta-item" style="grid-column: 1 / -1;">
-          <span class="cert-meta-label">Verified Attendance Record</span>
-          <span class="cert-meta-value">${cert.attendanceRecord}</span>
-        </div>
-        <div class="cert-meta-item" style="grid-column: 1 / -1;">
-          <span class="cert-meta-label">Underlying Verified Skills</span>
-          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.35rem;">
-            ${cert.verifiedSkills.map(s => `<span class="badge badge-secondary">${s}</span>`).join('')}
-          </div>
-        </div>
-        <div class="cert-meta-item" style="grid-column: 1 / -1;">
-          <span class="cert-meta-label">Tamper-Proof Cryptographic Hash (SHA-256)</span>
-          <span class="cert-meta-value mono" style="font-size: 0.72rem; word-break: break-all; color: var(--text-subtle);">
-            ${cert.hash}
-          </span>
-        </div>
-      </div>
-
-      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px dashed var(--border-medium); display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: var(--text-subtle);">
-        <span>Certifying Body: ${cert.certifyingAuthority}</span>
-        <span class="badge badge-demo">DEMO VERIFICATION SYSTEM</span>
-      </div>
-    `;
+  if (theme === 'dark') {
+    iconSpan.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
   } else {
-    resultBox.innerHTML = `
-      <div class="result-status-badge" style="background: var(--color-accent-red-subtle); color: var(--color-accent-red); border: 1px solid rgba(220, 38, 38, 0.3);">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        Certificate ID Not Found
-      </div>
-      <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.5rem;">
-        The identifier <strong>"${certId}"</strong> is not recognized in the demo registry. Please try clicking one of the sample chips above: <code>NCCT-DEMO-2026-001</code>, <code>NCCT-DEMO-2026-002</code>, or <code>NCCT-DEMO-2026-003</code>.
-      </p>
-    `;
-  }
-  resultBox.classList.add('active');
-}
-
-/* --------------------------------------------------------------------------
-   SKILL PASSPORT PROFILE SWITCHER
-   -------------------------------------------------------------------------- */
-function initSkillPassport() {
-  const profileToggleBtns = document.querySelectorAll('.passport-toggle-btn');
-  if (!profileToggleBtns.length) return;
-
-  profileToggleBtns.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      profileToggleBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderSkillPassport(SUDO_DATA.demoProfiles[index] || SUDO_DATA.demoProfiles[0]);
-    });
-  });
-
-  // Render initial profile
-  renderSkillPassport(SUDO_DATA.demoProfiles[0]);
-}
-
-function renderSkillPassport(profile) {
-  const card = document.getElementById('passportCardContent');
-  if (!card) return;
-
-  card.innerHTML = `
-    <div class="passport-header">
-      <div class="passport-org-meta">
-        <div class="passport-seal">NCCT</div>
-        <div>
-          <div style="font-weight: 800; font-size: 0.85rem; color: var(--text-main);">NATIONAL COUNCIL FOR COOPERATIVE TRAINING</div>
-          <div style="font-size: 0.72rem; color: var(--text-subtle);">Ministry of Cooperation, Government of India • Federated Skill Passport</div>
-        </div>
-      </div>
-      <span class="badge badge-demo">DEMO DATA</span>
-    </div>
-
-    <div class="passport-profile-strip">
-      <div class="profile-avatar">${profile.avatarInitials}</div>
-      <div class="profile-main-meta">
-        <h3 class="profile-name">${profile.name}</h3>
-        <div class="profile-prog">${profile.program}</div>
-        <div class="profile-id">Participant UID: ${profile.id} • ${profile.institute}</div>
-      </div>
-    </div>
-
-    <div class="passport-stats-grid">
-      <div class="p-stat-box">
-        <div class="p-stat-num" style="color: var(--color-secondary);">${profile.attendanceRate}</div>
-        <div class="p-stat-lbl">Hardware Attendance</div>
-      </div>
-      <div class="p-stat-box">
-        <div class="p-stat-num" style="color: var(--color-primary);">${profile.assessmentsPassed}</div>
-        <div class="p-stat-lbl">Assessments Passed</div>
-      </div>
-      <div class="p-stat-box">
-        <div class="p-stat-num" style="color: var(--color-accent-amber);">${profile.competencyLevel.split(' ')[0]}</div>
-        <div class="p-stat-lbl">Competency Level</div>
-      </div>
-    </div>
-
-    <div style="margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 700; color: var(--text-main);">
-      Empirically Verified Competencies (${profile.skills.length})
-    </div>
-
-    <div class="skills-tags-cluster">
-      ${profile.skills.map(s => `
-        <div class="skill-tag-pill" title="Verified via: ${s.verifiedBy}">
-          <span class="skill-level-dot"></span>
-          <span>${s.name}</span>
-          <span style="font-size: 0.7rem; color: var(--text-subtle);">L${s.level}</span>
-        </div>
-      `).join('')}
-    </div>
-
-    <div style="padding-top: 1rem; border-top: 1px dashed var(--border-medium); display: flex; align-items: center; justify-content: space-between;">
-      <div style="font-size: 0.75rem; color: var(--text-subtle);">
-        Validated via ESP32 Biometric Terminal • Tamper-proof
-      </div>
-      <div style="display: flex; gap: 0.5rem;">
-        <span class="badge badge-secondary">Cryptographically Signed</span>
-      </div>
-    </div>
-  `;
-}
-
-/* --------------------------------------------------------------------------
-   INTERACTIVE DASHBOARDS SUITE (5 SWITCHABLE VIEWS)
-   -------------------------------------------------------------------------- */
-function initDashboards() {
-  const tabs = document.querySelectorAll('.dash-tab-btn');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-dash');
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      document.querySelectorAll('.dashboard-panel').forEach(p => p.classList.remove('active'));
-      const activePanel = document.getElementById(`dash-${target}`);
-      if (activePanel) activePanel.classList.add('active');
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   QUICK JUMP / SEARCH MODAL (CMD/CTRL+K)
-   -------------------------------------------------------------------------- */
-const SEARCH_INDEX = [
-  { title: "Problem Statement & Comparison", hash: "#problem", meta: "Scattered data, basic check-in, certificates as dead ends" },
-  { title: "Our Proposed Solution (LMS + ERP + Presence)", hash: "#solution", meta: "Unified Platform formula, core pillars" },
-  { title: "Participant Journey (10 Steps)", hash: "#journey", meta: "Interactive flow: Register, Learn, Smart Attendance, Certification" },
-  { title: "Stakeholder Ecosystem", hash: "#ecosystem", meta: "Trainee, Trainer, Institute, NCCT Admin, Employer" },
-  { title: "Smart Attendance System (ESP32 + BLE)", hash: "#attendance", meta: "Hardware verification, Biometrics, Fallback modes" },
-  { title: "Offline-First Architecture", hash: "#offline", meta: "Real-world connectivity, local cache, differential sync" },
-  { title: "Learning Management System (LMS)", hash: "#lms", meta: "Multilingual coursework, modular progress, quizzes" },
-  { title: "Verified Skill Passport", hash: "#passport", meta: "Digital credential card, evidence-backed competencies" },
-  { title: "Certification & Verification Tool", hash: "#certification", meta: "Tamper-evident QR, unique certificate ID simulator" },
-  { title: "AI Career Guidance", hash: "#ai-guidance", meta: "Skill gap analysis, tailored career pathways" },
-  { title: "Job & Opportunity Matching", hash: "#job-matching", meta: "Connecting verified skills with cooperative vacancies" },
-  { title: "Employer & Cooperative Portal", hash: "#employer-portal", meta: "Post jobs, search verified talent, shortlist" },
-  { title: "Training Intelligence & Outcome Loop", hash: "#training-intelligence", meta: "Circular feedback loop, curriculum improvement" },
-  { title: "Cooperative Skill Map (Federated Model)", hash: "#skill-map", meta: "NCCT Central Layer, RICMs, ICMs, Government insights" },
-  { title: "Proposed Technical Architecture", hash: "#architecture", meta: "Hardware layer, APIs, Central Platform, Data flow" },
-  { title: "Complete Data Flow Specification", hash: "#data-flow", meta: "Step-by-step movement of data and artifacts created" },
-  { title: "Security, Privacy & RBAC", hash: "#security", meta: "Role-based access, encryption, immutable audit logs" },
-  { title: "Feasibility & Viability", hash: "#feasibility", meta: "Technical, Operational, Economic, Scalability" },
-  { title: "Risks & Mitigation Matrix", hash: "#risks", meta: "5 explicit risks from PPT and engineering mitigations" },
-  { title: "Impact & 4 Benefit Categories", hash: "#impact", meta: "Social, Economic, Operational, Educational benefits" },
-  { title: "Interactive Dashboards (Demo)", hash: "#dashboards", meta: "5 switchable mock dashboards for all stakeholders" },
-  { title: "Future Scope & Roadmap", hash: "#future-scope", meta: "Future nationwide expansion, voice AI, national integrations" },
-  { title: "Research & References", hash: "#references", meta: "Grounded academic & technical documentation framework" },
-  { title: "Project Team Information", hash: "#team", meta: "Team members, roles, and engineering contributions" }
-];
-
-function initQuickSearchModal() {
-  const modal = document.getElementById('searchModal');
-  const openBtns = document.querySelectorAll('.open-search-modal');
-  const closeBtn = document.getElementById('closeSearchModal');
-  const input = document.getElementById('searchModalInput');
-  const resultsContainer = document.getElementById('searchModalResults');
-
-  if (!modal || !input || !resultsContainer) return;
-
-  function openModal() {
-    modal.classList.add('active');
-    input.value = '';
-    renderSearchResults('');
-    setTimeout(() => input.focus(), 50);
-  }
-
-  function closeModal() {
-    modal.classList.remove('active');
-  }
-
-  openBtns.forEach(b => b.addEventListener('click', openModal));
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-      e.preventDefault();
-      modal.classList.contains('active') ? closeModal() : openModal();
-    }
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeModal();
-    }
-  });
-
-  input.addEventListener('input', (e) => {
-    renderSearchResults(e.target.value.toLowerCase().trim());
-  });
-
-  function renderSearchResults(query) {
-    const filtered = query
-      ? SEARCH_INDEX.filter(item => item.title.toLowerCase().includes(query) || item.meta.toLowerCase().includes(query))
-      : SEARCH_INDEX;
-
-    if (!filtered.length) {
-      resultsContainer.innerHTML = `
-        <div style="padding: 2rem; text-align: center; color: var(--text-subtle);">
-          No matching documentation sections found for "${query}".
-        </div>
-      `;
-      return;
-    }
-
-    resultsContainer.innerHTML = filtered.map(item => `
-      <a href="${item.hash}" class="modal-result-item" onclick="document.getElementById('searchModal').classList.remove('active');">
-        <span class="result-item-title">${item.title}</span>
-        <span class="result-item-meta">${item.meta}</span>
-      </a>
-    `).join('');
+    iconSpan.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
   }
 }
 
 /* --------------------------------------------------------------------------
-   MOBILE NAVIGATION DRAWER
+   02. MOBILE NAVIGATION DRAWER
    -------------------------------------------------------------------------- */
 function initMobileNav() {
   const toggleBtn = document.getElementById('mobileNavToggle');
+  const closeBtn = document.getElementById('closeMobileNav');
   const drawer = document.getElementById('mobileNavDrawer');
   const overlay = document.getElementById('mobileDrawerOverlay');
-  const closeBtn = document.getElementById('closeMobileNav');
-
-  if (!drawer) return;
+  const drawerLinks = document.querySelectorAll('.drawer-link');
 
   function openDrawer() {
-    drawer.classList.add('open');
-    if (overlay) overlay.classList.add('active');
+    drawer?.classList.add('active');
+    overlay?.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeDrawer() {
-    drawer.classList.remove('open');
-    if (overlay) overlay.classList.remove('active');
+    drawer?.classList.remove('active');
+    overlay?.classList.remove('active');
     document.body.style.overflow = '';
   }
 
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', openDrawer);
-  }
+  toggleBtn?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  overlay?.addEventListener('click', closeDrawer);
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeDrawer);
-  }
-
-  if (overlay) {
-    overlay.addEventListener('click', closeDrawer);
-  }
-
-  drawer.querySelectorAll('a').forEach(link => {
+  drawerLinks.forEach(link => {
     link.addEventListener('click', closeDrawer);
   });
+}
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && drawer.classList.contains('open')) {
-      closeDrawer();
+/* --------------------------------------------------------------------------
+   03. 10-STAGE WORKFLOW STEPPER & INSPECTOR
+   -------------------------------------------------------------------------- */
+let activeWorkflowStepId = 1;
+
+function initWorkflowStepper() {
+  const listContainer = document.getElementById('workflowStepList');
+  const prevBtn = document.getElementById('workflowPrevBtn');
+  const nextBtn = document.getElementById('workflowNextBtn');
+  if (!listContainer || !SUDO_DATA.journeySteps) return;
+
+  // Render left steps
+  listContainer.innerHTML = SUDO_DATA.journeySteps.map(step => `
+    <div class="wf-step-item ${step.id === 1 ? 'active' : ''}" data-step-id="${step.id}" id="wf-step-${step.id}">
+      <div class="wf-left">
+        <span class="wf-badge-num">${step.num}</span>
+        <div>
+          <div class="wf-name">${step.name}</div>
+          <div class="wf-sub">${step.short}</div>
+        </div>
+      </div>
+      <span class="badge badge-sm badge-outline">Inspect →</span>
+    </div>
+  `).join('');
+
+  // Attach click events
+  const stepItems = listContainer.querySelectorAll('.wf-step-item');
+  stepItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const stepId = parseInt(item.getAttribute('data-step-id'), 10);
+      selectWorkflowStep(stepId);
+    });
+  });
+
+  prevBtn?.addEventListener('click', () => {
+    if (activeWorkflowStepId > 1) {
+      selectWorkflowStep(activeWorkflowStepId - 1);
+    }
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    if (activeWorkflowStepId < SUDO_DATA.journeySteps.length) {
+      selectWorkflowStep(activeWorkflowStepId + 1);
+    }
+  });
+
+  selectWorkflowStep(1);
+}
+
+function selectWorkflowStep(stepId) {
+  activeWorkflowStepId = stepId;
+  const stepData = SUDO_DATA.journeySteps.find(s => s.id === stepId);
+  if (!stepData) return;
+
+  // Highlight step item in list
+  document.querySelectorAll('.wf-step-item').forEach(item => {
+    item.classList.remove('active');
+  });
+  const activeItem = document.getElementById(`wf-step-${stepId}`);
+  activeItem?.classList.add('active');
+
+  // Update Inspector Card
+  const tabEl = document.getElementById('inspectorTab');
+  const tabTitle = document.getElementById('inspectorTabTitle');
+  const stepNumEl = document.getElementById('inspectorStepNum');
+  const nameEl = document.getElementById('inspectorName');
+  const shortEl = document.getElementById('inspectorShort');
+  const iconBadge = document.getElementById('inspectorIconBadge');
+  const whatEl = document.getElementById('inspectorWhat');
+  const whyEl = document.getElementById('inspectorWhy');
+  const inputEl = document.getElementById('inspectorInput');
+  const procEl = document.getElementById('inspectorProcessing');
+  const outEl = document.getElementById('inspectorOutput');
+  const techEl = document.getElementById('inspectorTech');
+
+  if (tabEl) {
+    tabEl.className = `folder-tab tab-${stepData.accent || 'yellow'}`;
+  }
+  if (tabTitle) tabTitle.textContent = `STAGE ${stepData.num} INSPECTION`;
+  if (stepNumEl) stepNumEl.textContent = `STEP ${stepData.num} OF 10`;
+  if (nameEl) nameEl.textContent = stepData.name;
+  if (shortEl) shortEl.textContent = stepData.short;
+  if (iconBadge) iconBadge.textContent = stepData.num;
+  if (whatEl) whatEl.textContent = stepData.what;
+  if (whyEl) whyEl.textContent = stepData.why;
+  if (inputEl) inputEl.textContent = stepData.input || "Demographic / Telemetry input";
+  if (procEl) procEl.textContent = stepData.processing || "Edge verification & Cryptographic hashing";
+  if (outEl) outEl.textContent = stepData.output || "Signed token / updated ledger record";
+  if (techEl) techEl.textContent = stepData.technology || "ESP32, RESTful APIs, PostgreSQL Master";
+}
+
+/* --------------------------------------------------------------------------
+   04. TECHNOLOGY STACK (8 Structured Categories)
+   -------------------------------------------------------------------------- */
+function initTechStack() {
+  const container = document.getElementById('techStackGrid');
+  if (!container || !SUDO_DATA.techStack) return;
+
+  const categories = Object.keys(SUDO_DATA.techStack);
+  container.innerHTML = categories.map(catKey => {
+    const cat = SUDO_DATA.techStack[catKey];
+    return `
+      <div class="card neo-card folder-card tech-card">
+        <div class="folder-tab tab-${cat.accent || 'yellow'}">
+          <span class="folder-tab-icon">⚡</span>
+          ${cat.category.toUpperCase()}
+        </div>
+        <div class="card-inner">
+          <p class="card-text" style="font-size: 0.8rem; margin-bottom: 0.75rem;">${cat.description}</p>
+          <div class="tech-items-list">
+            ${cat.items.map(item => `
+              <div class="tech-item">
+                <div class="tech-item-top">
+                  <span class="tech-item-name">${item.name}</span>
+                  <span class="badge badge-sm badge-outline">${item.tag}</span>
+                </div>
+                <div class="tech-item-role">${item.role}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* --------------------------------------------------------------------------
+   05. INTERACTIVE STAKEHOLDER DASHBOARDS (5 Cockpits)
+   -------------------------------------------------------------------------- */
+let currentRole = 'trainee';
+
+function initDashboards() {
+  const switcher = document.getElementById('dashboardSwitcher');
+  if (!switcher || !SUDO_DATA.dashboards) return;
+
+  const roleButtons = switcher.querySelectorAll('.role-tab-btn');
+  roleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      roleButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const role = btn.getAttribute('data-role');
+      renderDashboard(role);
+    });
+  });
+
+  renderDashboard('trainee');
+}
+
+function renderDashboard(role) {
+  currentRole = role;
+  const data = SUDO_DATA.dashboards[role];
+  if (!data) return;
+
+  const titleEl = document.getElementById('dashUserTitle');
+  const subEl = document.getElementById('dashUserSub');
+  const kpiGrid = document.getElementById('dashKpiGrid');
+  const contentGrid = document.getElementById('dashContentGrid');
+
+  if (titleEl) titleEl.textContent = data.name;
+  if (subEl) subEl.textContent = `${data.user} • ${data.subtitle}`;
+
+  // Render 4 KPI Cards
+  const accentClasses = ['kpi-yellow', 'kpi-orange', 'kpi-pink', 'kpi-green'];
+  if (kpiGrid) {
+    kpiGrid.innerHTML = data.kpis.map((kpi, idx) => `
+      <div class="kpi-card ${accentClasses[idx % 4]}">
+        <div class="kpi-label">${kpi.label}</div>
+        <div class="kpi-value">${kpi.value}</div>
+        <div class="kpi-trend">${kpi.trend}</div>
+      </div>
+    `).join('');
+  }
+
+  // Render Role-Specific Main Panels
+  if (contentGrid) {
+    if (role === 'trainee') {
+      contentGrid.innerHTML = `
+        <div class="dash-panel">
+          <div class="dash-panel-title">
+            <span>Recent Activity &amp; Presence Events</span>
+            <span class="badge badge-sm badge-green">ESP32 Synced</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+            ${data.recentActivity.map(act => `
+              <div style="padding: 0.75rem; background: var(--bg-surface-cream); border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.85rem;">
+                <div style="font-weight: 700; color: var(--text-main);">${act.event}</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">⏱️ ${act.time}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div class="dash-panel">
+          <div class="dash-panel-title">
+            <span>Verified Skills Earned</span>
+            <span class="badge badge-sm badge-purple">Passport Level 4</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="padding: 0.6rem; background: var(--color-yellow-light); border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 700;">
+              ✓ Cooperative Banking &amp; Accounting (96% Pass)
+            </div>
+            <div style="padding: 0.6rem; background: var(--color-pink-light); border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 700;">
+              ✓ PACS Computerization &amp; ERP (Rubric #PR-88)
+            </div>
+            <div style="padding: 0.6rem; background: var(--color-green-light); border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 700;">
+              ✓ Statutory Audit &amp; RBI Compliance (Field Grade A)
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (role === 'trainer') {
+      contentGrid.innerHTML = `
+        <div class="dash-panel">
+          <div class="dash-panel-title">
+            <span>Live Classroom Telemetry (ESP32 Terminal #04)</span>
+            <span class="badge badge-sm badge-yellow">Classroom 204 Active</span>
+          </div>
+          <div style="padding: 1rem; background: #141416; color: #4ade80; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6;">
+            [09:14:02] BLE BEACON BROADCAST RSSI: -54dBm (Room Proximity Verified)<br>
+            [09:14:08] BIOMETRIC SCAN MATCH: User NCCT-2026-IND-08492 (Score: 98.4%)<br>
+            [09:14:09] LOCAL SPIFFS FLASH BUFFER COMMITTED: Nonce #94a1b8<br>
+            [09:14:10] REST API GATEWAY SYNC: Attendance Count = 45 / 48 (93.75%)
+          </div>
+        </div>
+        <div class="dash-panel">
+          <div class="dash-panel-title">
+            <span>Intervention Alerts</span>
+            <span class="badge badge-sm badge-orange">Mentoring Required</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            ${data.supportAlerts.map(alt => `
+              <div style="padding: 0.65rem; background: var(--color-orange-light); border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.8rem;">
+                <strong>${alt.student}:</strong> ${alt.issue}
+                <div style="font-size: 0.72rem; color: var(--color-orange-dark); font-weight: 800; margin-top: 0.2rem;">Action: ${alt.action}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else if (role === 'institute') {
+      contentGrid.innerHTML = `
+        <div class="dash-panel" style="grid-column: 1 / -1;">
+          <div class="dash-panel-title">
+            <span>Active Batch Rosters &amp; Hardware Telemetry (RICM Bengaluru)</span>
+            <span class="badge badge-sm badge-blue">8 Batches Active</span>
+          </div>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left;">
+              <thead>
+                <tr style="border-bottom: var(--border-main); background: var(--bg-surface-cream);">
+                  <th style="padding: 0.6rem;">Batch ID</th>
+                  <th style="padding: 0.6rem;">Program Name</th>
+                  <th style="padding: 0.6rem;">Strength</th>
+                  <th style="padding: 0.6rem;">Attendance Rate</th>
+                  <th style="padding: 0.6rem;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${data.batchSummary.map(b => `
+                  <tr style="border-bottom: var(--border-thin);">
+                    <td style="padding: 0.6rem; font-family: var(--font-mono); font-weight: 700;">${b.batch}</td>
+                    <td style="padding: 0.6rem; font-weight: 600;">${b.prog}</td>
+                    <td style="padding: 0.6rem;">${b.strength} Trainees</td>
+                    <td style="padding: 0.6rem; font-weight: 700; color: var(--color-green);">${b.attRate}</td>
+                    <td style="padding: 0.6rem;"><span class="badge badge-sm badge-yellow">${b.status}</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    } else if (role === 'admin') {
+      contentGrid.innerHTML = `
+        <div class="dash-panel" style="grid-column: 1 / -1;">
+          <div class="dash-panel-title">
+            <span>National Federated Training Radar (14 RICMs &amp; 19 ICMs)</span>
+            <span class="badge badge-sm badge-pink">Ministry of Cooperation</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+            ${data.regionalBreakdown.map(reg => `
+              <div style="background: var(--bg-surface-cream); border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem;">
+                <div style="font-weight: 800; font-size: 0.9rem; margin-bottom: 0.35rem;">${reg.region}</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Institutes: <strong>${reg.institutes}</strong></div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Enrolled: <strong>${reg.enrollment}</strong></div>
+                <div style="font-size: 0.78rem; color: var(--color-green); font-weight: 800; margin-top: 0.3rem;">Placement: ${reg.placementRate}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else if (role === 'employer') {
+      contentGrid.innerHTML = `
+        <div class="dash-panel" style="grid-column: 1 / -1;">
+          <div class="dash-panel-title">
+            <span>Verified Candidate Discovery Query (Matching PACS &amp; Bank Vacancies)</span>
+            <span class="badge badge-sm badge-green">Direct Hiring Pipeline</span>
+          </div>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left;">
+              <thead>
+                <tr style="border-bottom: var(--border-main); background: var(--bg-surface-cream);">
+                  <th style="padding: 0.6rem;">Candidate Name</th>
+                  <th style="padding: 0.6rem;">Participant ID</th>
+                  <th style="padding: 0.6rem;">Competency Match</th>
+                  <th style="padding: 0.6rem;">Training Institute</th>
+                  <th style="padding: 0.6rem;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${data.liveTalentQuery.map(c => `
+                  <tr style="border-bottom: var(--border-thin);">
+                    <td style="padding: 0.6rem; font-weight: 800;">${c.candidate}</td>
+                    <td style="padding: 0.6rem; font-family: var(--font-mono); font-size: 0.78rem;">${c.id}</td>
+                    <td style="padding: 0.6rem; font-weight: 800; color: var(--color-green);">${c.match} Match</td>
+                    <td style="padding: 0.6rem;">${c.institute}</td>
+                    <td style="padding: 0.6rem;"><span class="badge badge-sm badge-green">${c.status}</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   06. CERTIFICATE VERIFIER SIMULATOR
+   -------------------------------------------------------------------------- */
+function initCertificateVerifier() {
+  const verifyBtn = document.getElementById('runCertVerifyBtn');
+  const inputEl = document.getElementById('certInputBox');
+  const resultBox = document.getElementById('certResultBox');
+  const sampleButtons = document.querySelectorAll('.test-cert-btn');
+
+  sampleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const certId = btn.getAttribute('data-cert');
+      if (inputEl) inputEl.value = certId;
+      runVerification(certId);
+    });
+  });
+
+  verifyBtn?.addEventListener('click', () => {
+    const certId = inputEl?.value.trim() || 'NCCT-DEMO-2026-001';
+    runVerification(certId);
+  });
+
+  function runVerification(certId) {
+    if (!resultBox) return;
+    const cert = SUDO_DATA.demoCertificates[certId];
+
+    if (cert) {
+      resultBox.innerHTML = `
+        <div class="cert-badge-valid">
+          ✓ CRYPTOGRAPHICALLY VERIFIED AUTHENTIC
+        </div>
+        <div style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">
+          ${cert.candidateName}
+        </div>
+        <div class="cert-row"><strong>Programme:</strong> ${cert.programme}</div>
+        <div class="cert-row"><strong>Institute:</strong> ${cert.institute}</div>
+        <div class="cert-row"><strong>Issue Date:</strong> ${cert.issueDate} • <strong>Grade:</strong> ${cert.grade}</div>
+        <div class="cert-row"><strong>Attendance Telemetry:</strong> ${cert.attendanceRecord}</div>
+        <div class="cert-row"><strong>Verified Competencies:</strong> ${cert.verifiedSkills.join(', ')}</div>
+        <div style="margin-top: 0.75rem; padding-top: 0.65rem; border-top: var(--border-thin); font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-subtle); word-break: break-all;">
+          <strong>SHA-256 Ledger Hash:</strong><br>${cert.hash}
+        </div>
+      `;
+    } else {
+      resultBox.innerHTML = `
+        <div style="padding: 1rem; background: var(--color-pink-light); border: var(--border-thin); border-radius: var(--radius-sm); color: var(--color-pink-dark); font-weight: 700;">
+          ✕ Certificate Record Not Found in NCCT Ledger.<br>
+          <span style="font-size: 0.8rem; font-weight: 500;">Please check the ID or try sample certificates: NCCT-DEMO-2026-001 or NCCT-DEMO-2026-002.</span>
+        </div>
+      `;
+    }
+  }
+
+  // Run on initial load
+  runVerification('NCCT-DEMO-2026-001');
+}
+
+/* --------------------------------------------------------------------------
+   07. DATA FLOW (6 Interactive Stages)
+   -------------------------------------------------------------------------- */
+let activeDataFlowStage = 1;
+
+function initDataFlow() {
+  const bar = document.getElementById('dataflowStepsBar');
+  const details = document.getElementById('dataflowStageDetails');
+  if (!bar || !SUDO_DATA.dataFlowStages) return;
+
+  bar.innerHTML = SUDO_DATA.dataFlowStages.map(st => `
+    <div class="df-step-btn ${st.stage === 1 ? 'active' : ''}" data-df-stage="${st.stage}" id="df-btn-${st.stage}">
+      <div class="df-step-num">STAGE 0${st.stage}</div>
+      <div class="df-step-name">${st.name}</div>
+    </div>
+  `).join('');
+
+  const buttons = bar.querySelectorAll('.df-step-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stageNum = parseInt(btn.getAttribute('data-df-stage'), 10);
+      selectDataFlowStage(stageNum);
+    });
+  });
+
+  selectDataFlowStage(1);
+}
+
+function selectDataFlowStage(stageNum) {
+  activeDataFlowStage = stageNum;
+  const stageData = SUDO_DATA.dataFlowStages.find(s => s.stage === stageNum);
+  const details = document.getElementById('dataflowStageDetails');
+  if (!stageData || !details) return;
+
+  document.querySelectorAll('.df-step-btn').forEach(btn => btn.classList.remove('active'));
+  document.getElementById(`df-btn-${stageNum}`)?.classList.add('active');
+
+  details.innerHTML = `
+    <div class="df-detail-header">
+      <div>
+        <span class="badge badge-sm badge-${stageData.accent || 'yellow'}">STAGE 0${stageData.stage} OF 06</span>
+        <h3 class="df-detail-title">${stageData.title}</h3>
+      </div>
+      <span class="badge badge-outline">Source: ${stageData.source}</span>
+    </div>
+    <p class="df-detail-desc">${stageData.description}</p>
+    <div class="df-packet-box">
+      <div style="font-weight: 800; font-size: 0.72rem; color: #94a3b8; margin-bottom: 0.35rem;">SAMPLE PACKET PAYLOAD:</div>
+      ${stageData.packet}
+    </div>
+  `;
+}
+
+/* --------------------------------------------------------------------------
+   08. BENEFITS METRIC CARDS
+   -------------------------------------------------------------------------- */
+function initBenefits() {
+  const container = document.getElementById('benefitsMetricGrid');
+  if (!container || !SUDO_DATA.benefits) return;
+
+  const bgClasses = ['bg-yellow', 'bg-orange', 'bg-pink', 'bg-purple', 'bg-green', 'bg-blue'];
+  container.innerHTML = SUDO_DATA.benefits.map((b, idx) => `
+    <div class="benefit-card ${bgClasses[idx % 6]} neo-card">
+      <div class="benefit-metric-val">${b.metric}</div>
+      <h3 class="benefit-title">${b.title}</h3>
+      <p class="benefit-desc">${b.desc}</p>
+    </div>
+  `).join('');
+}
+
+/* --------------------------------------------------------------------------
+   09. FUTURE SCOPE ROADMAP
+   -------------------------------------------------------------------------- */
+function initRoadmap() {
+  const container = document.getElementById('roadmapTimeline');
+  if (!container || !SUDO_DATA.futureScopePhases) return;
+
+  container.innerHTML = SUDO_DATA.futureScopePhases.map(p => `
+    <div class="card neo-card folder-card roadmap-phase-card">
+      <div class="folder-tab tab-${p.accent || 'yellow'}">
+        <span class="folder-tab-icon">🚀</span>
+        ${p.badge.toUpperCase()}
+      </div>
+      <div class="card-inner">
+        <div class="phase-timeline-badge">${p.phase} • ${p.timeline}</div>
+        <h3 class="phase-title">${p.title}</h3>
+        <ul class="milestones-list">
+          ${p.milestones.map(m => `<li>${m}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* --------------------------------------------------------------------------
+   10. TEAM SUDO_CORE CARDS
+   -------------------------------------------------------------------------- */
+function initTeam() {
+  const container = document.getElementById('teamCardsGrid');
+  if (!container || !SUDO_DATA.teamMembers) return;
+
+  container.innerHTML = SUDO_DATA.teamMembers.map(m => `
+    <div class="card neo-card">
+      <div class="team-card-inner">
+        <div class="team-avatar bg-${m.accent || 'yellow'}">${m.initials}</div>
+        <h3 class="team-name">${m.name}</h3>
+        <div class="team-role">${m.role}</div>
+        <span class="badge badge-sm badge-outline" style="margin-bottom: 0.75rem;">${m.team} • ID: ${m.teamId}</span>
+        <p class="team-contrib">${m.contribution}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* --------------------------------------------------------------------------
+   11. PRESENTATION MODE (Fullscreen Judge Walkthrough)
+   -------------------------------------------------------------------------- */
+let activeSlideIndex = 0;
+
+function initPresentationMode() {
+  const modal = document.getElementById('presentationModal');
+  const closeBtn = document.getElementById('closePresModal');
+  const prevBtn = document.getElementById('presPrevBtn');
+  const nextBtn = document.getElementById('presNextBtn');
+  const launchButtons = document.querySelectorAll('.launch-pres-btn');
+  const dotsContainer = document.getElementById('presDots');
+
+  if (!modal || !SUDO_DATA.presentationSlides) return;
+
+  // Generate indicator dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = SUDO_DATA.presentationSlides.map((_, idx) => `
+      <div class="pres-dot ${idx === 0 ? 'active' : ''}" data-slide="${idx}"></div>
+    `).join('');
+
+    dotsContainer.querySelectorAll('.pres-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const slideIdx = parseInt(dot.getAttribute('data-slide'), 10);
+        showSlide(slideIdx);
+      });
+    });
+  }
+
+  function openPresentation() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    showSlide(0);
+  }
+
+  function closePresentation() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  launchButtons.forEach(btn => btn.addEventListener('click', openPresentation));
+  closeBtn?.addEventListener('click', closePresentation);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('active')) {
+      if (e.key === 'p' || e.key === 'P') {
+        openPresentation();
+      }
+      return;
+    }
+
+    if (e.key === 'Escape') closePresentation();
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  prevBtn?.addEventListener('click', prevSlide);
+  nextBtn?.addEventListener('click', nextSlide);
+
+  function nextSlide() {
+    if (activeSlideIndex < SUDO_DATA.presentationSlides.length - 1) {
+      showSlide(activeSlideIndex + 1);
+    }
+  }
+
+  function prevSlide() {
+    if (activeSlideIndex > 0) {
+      showSlide(activeSlideIndex - 1);
+    }
+  }
+}
+
+function showSlide(index) {
+  activeSlideIndex = index;
+  const slide = SUDO_DATA.presentationSlides[index];
+  if (!slide) return;
+
+  const tagEl = document.getElementById('presSlideTag');
+  const numEl = document.getElementById('presSlideNum');
+  const titleEl = document.getElementById('presTitle');
+  const subEl = document.getElementById('presSubtitle');
+  const bulletsList = document.getElementById('presBulletsList');
+  const visualEl = document.getElementById('presSlideVisual');
+
+  if (tagEl) tagEl.textContent = slide.tag;
+  if (numEl) numEl.textContent = slide.slideNumber;
+  if (titleEl) titleEl.textContent = slide.title;
+  if (subEl) subEl.textContent = slide.subtitle;
+
+  if (bulletsList) {
+    bulletsList.innerHTML = slide.bullets.map(b => `<li>${b}</li>`).join('');
+  }
+
+  // Update visual card based on slide type
+  if (visualEl) {
+    visualEl.innerHTML = `
+      <div style="font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">
+        SLIDE ${slide.slideNumber} VISUAL
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+        Smart India Hackathon • SIH1608 • Team Sudo_Core
+      </div>
+      <div style="padding: 1.5rem; background: var(--bg-surface-cream); border: var(--border-main); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700;">
+        DIAGRAM: [${slide.diagram}]<br>
+        <span style="color: var(--color-pink); font-size: 0.75rem;">Verified Presentation Source</span>
+      </div>
+    `;
+  }
+
+  // Update dots
+  const dots = document.querySelectorAll('.pres-dot');
+  dots.forEach((dot, idx) => {
+    dot.classList.toggle('active', idx === index);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   12. FLOATING BOTTOM CONTROL DOCK (Next/Prev Section Jumper)
+   -------------------------------------------------------------------------- */
+const sectionIds = [
+  'hero', 'problem', 'solution', 'workflow', 'architecture',
+  'tech-stack', 'dashboards', 'data-flow', 'security',
+  'benefits', 'future-scope', 'team'
+];
+
+function initBottomDock() {
+  const prevSecBtn = document.querySelector('.prev-section-btn');
+  const nextSecBtn = document.querySelector('.next-section-btn');
+
+  function getCurrentSectionIndex() {
+    const scrollPos = window.scrollY + 200;
+    for (let i = sectionIds.length - 1; i >= 0; i--) {
+      const el = document.getElementById(sectionIds[i]);
+      if (el && el.offsetTop <= scrollPos) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
+  prevSecBtn?.addEventListener('click', () => {
+    const curr = getCurrentSectionIndex();
+    if (curr > 0) {
+      const target = document.getElementById(sectionIds[curr - 1]);
+      target?.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+  nextSecBtn?.addEventListener('click', () => {
+    const curr = getCurrentSectionIndex();
+    if (curr < sectionIds.length - 1) {
+      const target = document.getElementById(sectionIds[curr + 1]);
+      target?.scrollIntoView({ behavior: 'smooth' });
     }
   });
 }
 
 /* --------------------------------------------------------------------------
-   PRINT / PDF EXPORT HANDLER
+   13. QUICK SEARCH MODAL (Ctrl+K)
    -------------------------------------------------------------------------- */
-function initPrintHandler() {
-  const printBtns = document.querySelectorAll('.print-doc-btn');
-  printBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.print();
-    });
+function initQuickSearchModal() {
+  const modal = document.getElementById('searchModal');
+  const input = document.getElementById('searchModalInput');
+  const resultsContainer = document.getElementById('searchModalResults');
+  const openButtons = document.querySelectorAll('.open-search-modal');
+  const closeBtn = document.getElementById('closeSearchModal');
+
+  const searchableItems = [
+    { title: "01 Problem Statement", desc: "Why current training systems fail & scattered records", anchor: "#problem" },
+    { title: "02 Proposed Solution", desc: "The 5 integrated pillars & architectural equation", anchor: "#solution" },
+    { title: "03 Project Workflow", desc: "Interactive 10-stage trainee lifecycle flow", anchor: "#workflow" },
+    { title: "04 System Architecture", desc: "Multi-tier design: Hardware, API, Database, AI", anchor: "#architecture" },
+    { title: "05 Technology Stack", desc: "Frontend, Backend, ESP32 Hardware, Database, AI", anchor: "#tech-stack" },
+    { title: "06 Live Dashboards", desc: "Trainee, Trainer, Institute, Admin, and Employer cockpits", anchor: "#dashboards" },
+    { title: "Certificate Verifier", desc: "Instant SHA-256 cryptographic check for employers", anchor: "#certificate-verifier" },
+    { title: "07 Data Movement Lifecycle", desc: "Stage 1 to 6 packet flow from sensor to ledger", anchor: "#data-flow" },
+    { title: "08 Security & Fraud Prevention", desc: "Hardware multi-check, zero-knowledge minutiae, RBAC", anchor: "#security" },
+    { title: "09 Measurable Benefits", desc: "Operational efficiency, audit integrity & 4 quadrants", anchor: "#benefits" },
+    { title: "10 Strategic Roadmap", desc: "Phased rollout: Phase 1 to Phase 4 Pan-India grid", anchor: "#future-scope" },
+    { title: "11 Project Team", desc: "Team Sudo_Core (Team ID: 190037)", anchor: "#team" }
+  ];
+
+  function openSearch() {
+    modal?.classList.add('active');
+    input?.focus();
+    renderSearchResults('');
+  }
+
+  function closeSearch() {
+    modal?.classList.remove('active');
+    if (input) input.value = '';
+  }
+
+  openButtons.forEach(btn => btn.addEventListener('click', openSearch));
+  closeBtn?.addEventListener('click', closeSearch);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeSearch();
   });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      modal?.classList.contains('active') ? closeSearch() : openSearch();
+    }
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
+      closeSearch();
+    }
+  });
+
+  input?.addEventListener('input', () => {
+    renderSearchResults(input.value.trim().toLowerCase());
+  });
+
+  function renderSearchResults(query) {
+    if (!resultsContainer) return;
+    const filtered = query
+      ? searchableItems.filter(item => item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query))
+      : searchableItems;
+
+    if (filtered.length === 0) {
+      resultsContainer.innerHTML = `<div style="padding: 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">No matching sections found</div>`;
+      return;
+    }
+
+    resultsContainer.innerHTML = filtered.map(item => `
+      <a href="${item.anchor}" class="modal-result-item" onclick="document.getElementById('searchModal').classList.remove('active')">
+        <div>
+          <div style="color: var(--text-main); font-weight: 800;">${item.title}</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">${item.desc}</div>
+        </div>
+        <span style="font-size: 0.8rem; color: var(--color-pink);">Jump →</span>
+      </a>
+    `).join('');
+  }
 }
