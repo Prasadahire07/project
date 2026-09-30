@@ -1,7 +1,7 @@
 # NCCT Cooperative Skill Intelligence System
-### Smart India Hackathon 2026 | Problem Statement: SIH26087
-**Team Name:** Sudo_Core | **Team ID:** 180037 | **Theme:** Smart Education | **Category:** Hardware  
-**GitHub Repository:** [https://github.com/SiddhuuX/SIH26087](https://github.com/SiddhuuX/SIH26087)
+**Unified Digital Training, Skill Verification & Employment Ecosystem**
+**Domain:** Smart Education & Vocational Skilling | **Architecture:** Modular Hardware & Cloud LMS  
+**Primary Framework:** National Council for Cooperative Training (NCCT), Ministry of Cooperation, Govt. of India
 
 ---
 
@@ -12,7 +12,7 @@ The **NCCT Cooperative Skill Intelligence System** is an end-to-end, AI and LMS-
 ### The Core Philosophy: "One Learner, One Digital Record"
 Traditional vocational training initiatives suffer from severe fragmentation: a student registers in a paper log, attends lectures with unverified roll-calls, receives a static paper certificate, and vanishes from the administrative radar without any record of employment outcome. 
 
-**Sudo_Core's Unified Platform** bridges this systemic gap by establishing:
+**The Unified Cooperative Platform** bridges this systemic gap by establishing:
 $$\text{UNIFIED PLATFORM} = \text{ERP} + \text{LMS} + \text{SMART ATTENDANCE (ESP32)} + \text{ANALYTICS} + \text{AI CAREER MATCHING}$$
 
 The platform tracks each participant through a seamless loop:
@@ -187,7 +187,7 @@ AI Cooperative Matching    Verified QR Certificate   Quizzes & Practical Rubrics
 
 ---
 
-## 11. Team Sudo_Core (Team ID: 180037)
+## 11. Core Engineering & Platform Architecture Roles
 
 * **Team Lead & System Architect:** Full-Stack Architecture, End-to-End System Integration & Data Schemas
 * **IoT & Embedded Hardware Engineer:** ESP32 Firmware, BLE Beacon Transmission & Biometric Interfacing
@@ -197,4 +197,4 @@ AI Cooperative Matching    Verified QR Certificate   Quizzes & Practical Rubrics
 * **Security & QA Specialist:** RBAC Governance, DPDP Act Compliance & Cryptographic Verification
 
 ---
-*Built for Smart India Hackathon 2026 • Problem Statement SIH26087 • Sudo_Core*
+*Built for National Skilling Initiative • Problem Statement CS-2026 • Core Architecture*

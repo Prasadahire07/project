@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TEAM SUDO_CORE • SIH1608 • NCCT UNIFIED ECOSYSTEM
+   COOPERATIVE SKILL INTELLIGENCE ECOSYSTEM
    Client-Side Interactive Logic & Presentation State Management
    Zero External Dependencies • Pure Modern ES6+ Architecture
    ========================================================================== */
@@ -563,7 +563,7 @@ function initRoadmap() {
 }
 
 /* --------------------------------------------------------------------------
-   10. TEAM SUDO_CORE CARDS
+   10. SYSTEM ARCHITECTURE & ENGINEERING ROLES
    -------------------------------------------------------------------------- */
 function initTeam() {
   const container = document.getElementById('teamCardsGrid');
@@ -683,7 +683,7 @@ function showSlide(index) {
         SLIDE ${slide.slideNumber} VISUAL
       </div>
       <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-        Smart India Hackathon • SIH1608 • Team Sudo_Core
+        Cooperative Skill Intelligence Platform
       </div>
       <div style="padding: 1.5rem; background: var(--bg-surface-cream); border: var(--border-main); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700;">
         DIAGRAM: [${slide.diagram}]<br>
@@ -762,7 +762,7 @@ function initQuickSearchModal() {
     { title: "08 Security & Fraud Prevention", desc: "Hardware multi-check, zero-knowledge minutiae, RBAC", anchor: "#security" },
     { title: "09 Measurable Benefits", desc: "Operational efficiency, audit integrity & 4 quadrants", anchor: "#benefits" },
     { title: "10 Strategic Roadmap", desc: "Phased rollout: Phase 1 to Phase 4 Pan-India grid", anchor: "#future-scope" },
-    { title: "11 Project Team", desc: "Team Sudo_Core (Team ID: 190037)", anchor: "#team" }
+    { title: "11 Project Team", desc: "Team Core Architecture (Team ID: 2026)", anchor: "#team" }
   ];
 
   function openSearch() {
